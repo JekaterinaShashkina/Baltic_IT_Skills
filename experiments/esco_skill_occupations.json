@@ -1,0 +1,478 @@
+{
+    "Java": {
+        "esco_title": "Java (computer programming)",
+        "uri": "http://data.europa.eu/esco/skill/19a8293b-8e95-4de3-983f-77484079c389",
+        "essential_occupations": [
+            {
+                "title": "computer science lecturer",
+                "uri": "http://data.europa.eu/esco/occupation/c3b82711-273d-4fa8-8de7-0ac3d99c16fc"
+            },
+            {
+                "title": "numerical tool and process control programmer",
+                "uri": "http://data.europa.eu/esco/occupation/6e5ceba0-df96-465f-adb4-2e06ae715d43"
+            },
+            {
+                "title": "computer-aided design operator",
+                "uri": "http://data.europa.eu/esco/occupation/62979364-6fac-41f2-87ca-202bca19a6ab"
+            },
+            {
+                "title": "cloud software developer",
+                "uri": "http://data.europa.eu/esco/occupation/781a6350-e686-45b9-b075-e4c8d5a05ff7"
+            }
+        ],
+        "optional_occupations": [
+            {
+                "title": "computer hardware engineering technician",
+                "uri": "http://data.europa.eu/esco/occupation/38a7f453-a7f0-45d2-a74d-5b92506e4a21"
+            },
+            {
+                "title": "computer numerical control machine operator",
+                "uri": "http://data.europa.eu/esco/occupation/5c082067-ea18-4ccb-8c43-e70b18ad8120"
+            },
+            {
+                "title": "chief information officer",
+                "uri": "http://data.europa.eu/esco/occupation/82f90e87-de92-4678-adae-61d3e5f7e1e4"
+            },
+            {
+                "title": "mobile devices technician",
+                "uri": "http://data.europa.eu/esco/occupation/b37d15b3-402e-4792-8292-f18c0de7aca6"
+            },
+            {
+                "title": "mobile application developer",
+                "uri": "http://data.europa.eu/esco/occupation/2ed56c3f-61d6-4f7e-9ef8-8849eb102e4c"
+            },
+            {
+                "title": "telecommunications engineer",
+                "uri": "http://data.europa.eu/esco/occupation/02eb0ae6-ecdd-4602-9c8e-60ffe6dbe1e2"
+            },
+            {
+                "title": "embedded system designer",
+                "uri": "http://data.europa.eu/esco/occupation/10469d70-78a3-4650-9e29-d04de13c62c1"
+            },
+            {
+                "title": "digital media designer",
+                "uri": "http://data.europa.eu/esco/occupation/d5a43cd3-230e-46d0-ba05-d67d61e5cfbb"
+            },
+            {
+                "title": "user interface designer",
+                "uri": "http://data.europa.eu/esco/occupation/96e20037-0a25-4bf6-a25e-808d1605d890"
+            },
+            {
+                "title": "ICT technician",
+                "uri": "http://data.europa.eu/esco/occupation/3e7bf729-4442-4b9f-ad5e-83111963795c"
+            },
+            {
+                "title": "cloud engineer",
+                "uri": "http://data.europa.eu/esco/occupation/349ee6f6-c295-4c38-9b98-48765b55280e"
+            },
+            {
+                "title": "knowledge engineer",
+                "uri": "http://data.europa.eu/esco/occupation/812c217d-32b7-4f6a-9faf-993d3577ac7f"
+            },
+            {
+                "title": "user interface developer",
+                "uri": "http://data.europa.eu/esco/occupation/866c7813-2c03-47d7-9bdc-192cfbace57c"
+            },
+            {
+                "title": "artificial intelligence engineer",
+                "uri": "http://data.europa.eu/esco/occupation/35553663-deab-4d9a-bf22-15c1625d28e8"
+            },
+            {
+                "title": "ICT system analyst",
+                "uri": "http://data.europa.eu/esco/occupation/a6a0b60f-08da-4faa-bf54-942987efb471"
+            },
+            {
+                "title": "computer hardware engineer",
+                "uri": "http://data.europa.eu/esco/occupation/92bb3d8c-8a9f-4cd7-80ec-247bbf173004"
+            },
+            {
+                "title": "webmaster",
+                "uri": "http://data.europa.eu/esco/occupation/dc8ef7da-d2c0-4474-96a0-6d0385eeec1e"
+            },
+            {
+                "title": "ICT network administrator",
+                "uri": "http://data.europa.eu/esco/occupation/81480b40-a318-47f3-9b2c-56b69ed67d95"
+            },
+            {
+                "title": "software tester",
+                "uri": "http://data.europa.eu/esco/occupation/106f79e4-6264-45f1-9e7a-297435cd684b"
+            },
+            {
+                "title": "software architect",
+                "uri": "http://data.europa.eu/esco/occupation/d0aa0792-4345-474b-9365-686cf4869d2e"
+            },
+            {
+                "title": "chief technology officer",
+                "uri": "http://data.europa.eu/esco/occupation/7b1b5da8-573a-49bb-a38e-68725a949f4f"
+            },
+            {
+                "title": "database designer",
+                "uri": "http://data.europa.eu/esco/occupation/8d9ec84d-cf2d-4179-87bc-335cda54a427"
+            },
+            {
+                "title": "integration engineer",
+                "uri": "http://data.europa.eu/esco/occupation/07e60525-1aad-4099-aaf3-2c7014c92212"
+            },
+            {
+                "title": "electrical engineer",
+                "uri": "http://data.europa.eu/esco/occupation/86ca306c-ab99-420a-9e2a-aa73c5c4de22"
+            },
+            {
+                "title": "web developer",
+                "uri": "http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d"
+            },
+            {
+                "title": "ICT system developer",
+                "uri": "http://data.europa.eu/esco/occupation/a7c1d23d-aeca-4bee-9a08-5993ed98b135"
+            },
+            {
+                "title": "data warehouse designer",
+                "uri": "http://data.europa.eu/esco/occupation/1562c7a3-c7d9-419d-b9b6-db26610bcf84"
+            },
+            {
+                "title": "database developer",
+                "uri": "http://data.europa.eu/esco/occupation/b11e1742-5e28-4270-b081-b0193d85ee7d"
+            },
+            {
+                "title": "telecommunications engineering technician",
+                "uri": "http://data.europa.eu/esco/occupation/d84bf1d7-ef99-40c4-a407-3791d6531b44"
+            },
+            {
+                "title": "blockchain developer",
+                "uri": "http://data.europa.eu/esco/occupation/24135b84-cbdd-4d42-9ed2-02fd982d15b2"
+            },
+            {
+                "title": "ICT network engineer",
+                "uri": "http://data.europa.eu/esco/occupation/cf2b03cd-feb7-4f47-90f6-ff1ed6016d3d"
+            },
+            {
+                "title": "enterprise architect",
+                "uri": "http://data.europa.eu/esco/occupation/2bef94db-0088-4507-982a-2ca717529adb"
+            },
+            {
+                "title": "software developer",
+                "uri": "http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1"
+            },
+            {
+                "title": "ICT application configurator",
+                "uri": "http://data.europa.eu/esco/occupation/456ed487-02f2-45c9-9213-d0fd8e9a069d"
+            },
+            {
+                "title": "digital games developer",
+                "uri": "http://data.europa.eu/esco/occupation/9ebaf3f0-0be0-47b7-b2b1-b3b04130fa81"
+            },
+            {
+                "title": "ICT application developer",
+                "uri": "http://data.europa.eu/esco/occupation/bd272aee-adc9-4a06-a15c-a73b4b4a46a7"
+            },
+            {
+                "title": "3D modeller",
+                "uri": "http://data.europa.eu/esco/occupation/bab5fa79-7f96-4e21-87b6-1eba560b8d9a"
+            },
+            {
+                "title": "software analyst",
+                "uri": "http://data.europa.eu/esco/occupation/04ba4d6c-957d-417f-bf63-5b9e015a9f86"
+            },
+            {
+                "title": "embedded systems software developer",
+                "uri": "http://data.europa.eu/esco/occupation/57af9090-55b4-4911-b2d0-86db01c00b02"
+            },
+            {
+                "title": "system configurator",
+                "uri": "http://data.europa.eu/esco/occupation/98c3d8f8-e3a8-49b7-9e58-236f25a6f6a0"
+            },
+            {
+                "title": "application engineer",
+                "uri": "http://data.europa.eu/esco/occupation/fde4372d-8293-42de-afbb-8b5a9b274fe7"
+            },
+            {
+                "title": "industrial mobile devices software developer",
+                "uri": "http://data.europa.eu/esco/occupation/bb6198c4-1d3e-40b9-9cc4-ad2dd9d7c74b"
+            },
+            {
+                "title": "ICT security technician",
+                "uri": "http://data.europa.eu/esco/occupation/a44a1dc5-be08-4840-8bd5-770c4ac1ca6d"
+            },
+            {
+                "title": "digital games designer",
+                "uri": "http://data.europa.eu/esco/occupation/d68ff35f-e34d-4e32-88ab-d6c06a6c25b9"
+            },
+            {
+                "title": "ICT system architect",
+                "uri": "http://data.europa.eu/esco/occupation/e1c72b5f-4c5c-487c-a6df-e84b64a51dae"
+            }
+        ]
+    },
+    "Python": {
+        "esco_title": "Python (computer programming)",
+        "uri": "http://data.europa.eu/esco/skill/ccd0a1d9-afda-43d9-b901-96344886e14d",
+        "essential_occupations": [
+            {
+                "title": "computer-aided design operator",
+                "uri": "http://data.europa.eu/esco/occupation/62979364-6fac-41f2-87ca-202bca19a6ab"
+            },
+            {
+                "title": "artificial intelligence engineer",
+                "uri": "http://data.europa.eu/esco/occupation/35553663-deab-4d9a-bf22-15c1625d28e8"
+            },
+            {
+                "title": "computer vision engineer",
+                "uri": "http://data.europa.eu/esco/occupation/1c5a45b9-440e-4726-b565-16a952abd341"
+            },
+            {
+                "title": "battery simulation engineer",
+                "uri": "http://data.europa.eu/esco/occupation/c2d36adb-ecf4-4823-980b-d84b0f11b2c8"
+            },
+            {
+                "title": "computer science lecturer",
+                "uri": "http://data.europa.eu/esco/occupation/c3b82711-273d-4fa8-8de7-0ac3d99c16fc"
+            },
+            {
+                "title": "numerical tool and process control programmer",
+                "uri": "http://data.europa.eu/esco/occupation/6e5ceba0-df96-465f-adb4-2e06ae715d43"
+            }
+        ],
+        "optional_occupations": [
+            {
+                "title": "computer hardware engineer",
+                "uri": "http://data.europa.eu/esco/occupation/92bb3d8c-8a9f-4cd7-80ec-247bbf173004"
+            },
+            {
+                "title": "ICT network administrator",
+                "uri": "http://data.europa.eu/esco/occupation/81480b40-a318-47f3-9b2c-56b69ed67d95"
+            },
+            {
+                "title": "computer numerical control machine operator",
+                "uri": "http://data.europa.eu/esco/occupation/5c082067-ea18-4ccb-8c43-e70b18ad8120"
+            },
+            {
+                "title": "system configurator",
+                "uri": "http://data.europa.eu/esco/occupation/98c3d8f8-e3a8-49b7-9e58-236f25a6f6a0"
+            },
+            {
+                "title": "cloud engineer",
+                "uri": "http://data.europa.eu/esco/occupation/349ee6f6-c295-4c38-9b98-48765b55280e"
+            },
+            {
+                "title": "user interface developer",
+                "uri": "http://data.europa.eu/esco/occupation/866c7813-2c03-47d7-9bdc-192cfbace57c"
+            },
+            {
+                "title": "integration engineer",
+                "uri": "http://data.europa.eu/esco/occupation/07e60525-1aad-4099-aaf3-2c7014c92212"
+            },
+            {
+                "title": "ICT application configurator",
+                "uri": "http://data.europa.eu/esco/occupation/456ed487-02f2-45c9-9213-d0fd8e9a069d"
+            },
+            {
+                "title": "database developer",
+                "uri": "http://data.europa.eu/esco/occupation/b11e1742-5e28-4270-b081-b0193d85ee7d"
+            },
+            {
+                "title": "software analyst",
+                "uri": "http://data.europa.eu/esco/occupation/04ba4d6c-957d-417f-bf63-5b9e015a9f86"
+            },
+            {
+                "title": "3D modeller",
+                "uri": "http://data.europa.eu/esco/occupation/bab5fa79-7f96-4e21-87b6-1eba560b8d9a"
+            },
+            {
+                "title": "knowledge engineer",
+                "uri": "http://data.europa.eu/esco/occupation/812c217d-32b7-4f6a-9faf-993d3577ac7f"
+            },
+            {
+                "title": "application engineer",
+                "uri": "http://data.europa.eu/esco/occupation/fde4372d-8293-42de-afbb-8b5a9b274fe7"
+            },
+            {
+                "title": "software architect",
+                "uri": "http://data.europa.eu/esco/occupation/d0aa0792-4345-474b-9365-686cf4869d2e"
+            },
+            {
+                "title": "database designer",
+                "uri": "http://data.europa.eu/esco/occupation/8d9ec84d-cf2d-4179-87bc-335cda54a427"
+            },
+            {
+                "title": "telecommunications engineer",
+                "uri": "http://data.europa.eu/esco/occupation/02eb0ae6-ecdd-4602-9c8e-60ffe6dbe1e2"
+            },
+            {
+                "title": "ICT security technician",
+                "uri": "http://data.europa.eu/esco/occupation/a44a1dc5-be08-4840-8bd5-770c4ac1ca6d"
+            },
+            {
+                "title": "chief technology officer",
+                "uri": "http://data.europa.eu/esco/occupation/7b1b5da8-573a-49bb-a38e-68725a949f4f"
+            },
+            {
+                "title": "ICT system developer",
+                "uri": "http://data.europa.eu/esco/occupation/a7c1d23d-aeca-4bee-9a08-5993ed98b135"
+            },
+            {
+                "title": "telecommunications engineering technician",
+                "uri": "http://data.europa.eu/esco/occupation/d84bf1d7-ef99-40c4-a407-3791d6531b44"
+            },
+            {
+                "title": "smart home engineer",
+                "uri": "http://data.europa.eu/esco/occupation/716df735-77eb-47c8-8c06-d86e46903989"
+            },
+            {
+                "title": "ICT system analyst",
+                "uri": "http://data.europa.eu/esco/occupation/a6a0b60f-08da-4faa-bf54-942987efb471"
+            },
+            {
+                "title": "electrical engineer",
+                "uri": "http://data.europa.eu/esco/occupation/86ca306c-ab99-420a-9e2a-aa73c5c4de22"
+            },
+            {
+                "title": "digital media designer",
+                "uri": "http://data.europa.eu/esco/occupation/d5a43cd3-230e-46d0-ba05-d67d61e5cfbb"
+            },
+            {
+                "title": "enterprise architect",
+                "uri": "http://data.europa.eu/esco/occupation/2bef94db-0088-4507-982a-2ca717529adb"
+            },
+            {
+                "title": "cyber incident responder",
+                "uri": "http://data.europa.eu/esco/occupation/0ce5a9f4-e00a-4bbe-b255-3c63407167a4"
+            },
+            {
+                "title": "webmaster",
+                "uri": "http://data.europa.eu/esco/occupation/dc8ef7da-d2c0-4474-96a0-6d0385eeec1e"
+            },
+            {
+                "title": "software developer",
+                "uri": "http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1"
+            },
+            {
+                "title": "digital games designer",
+                "uri": "http://data.europa.eu/esco/occupation/d68ff35f-e34d-4e32-88ab-d6c06a6c25b9"
+            },
+            {
+                "title": "mobile application developer",
+                "uri": "http://data.europa.eu/esco/occupation/2ed56c3f-61d6-4f7e-9ef8-8849eb102e4c"
+            },
+            {
+                "title": "data warehouse designer",
+                "uri": "http://data.europa.eu/esco/occupation/1562c7a3-c7d9-419d-b9b6-db26610bcf84"
+            },
+            {
+                "title": "mobile devices technician",
+                "uri": "http://data.europa.eu/esco/occupation/b37d15b3-402e-4792-8292-f18c0de7aca6"
+            },
+            {
+                "title": "ICT network engineer",
+                "uri": "http://data.europa.eu/esco/occupation/cf2b03cd-feb7-4f47-90f6-ff1ed6016d3d"
+            },
+            {
+                "title": "computer hardware engineering technician",
+                "uri": "http://data.europa.eu/esco/occupation/38a7f453-a7f0-45d2-a74d-5b92506e4a21"
+            },
+            {
+                "title": "industrial mobile devices software developer",
+                "uri": "http://data.europa.eu/esco/occupation/bb6198c4-1d3e-40b9-9cc4-ad2dd9d7c74b"
+            },
+            {
+                "title": "embedded system designer",
+                "uri": "http://data.europa.eu/esco/occupation/10469d70-78a3-4650-9e29-d04de13c62c1"
+            },
+            {
+                "title": "embedded systems software developer",
+                "uri": "http://data.europa.eu/esco/occupation/57af9090-55b4-4911-b2d0-86db01c00b02"
+            },
+            {
+                "title": "web developer",
+                "uri": "http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d"
+            },
+            {
+                "title": "software tester",
+                "uri": "http://data.europa.eu/esco/occupation/106f79e4-6264-45f1-9e7a-297435cd684b"
+            },
+            {
+                "title": "ICT application developer",
+                "uri": "http://data.europa.eu/esco/occupation/bd272aee-adc9-4a06-a15c-a73b4b4a46a7"
+            },
+            {
+                "title": "user interface designer",
+                "uri": "http://data.europa.eu/esco/occupation/96e20037-0a25-4bf6-a25e-808d1605d890"
+            },
+            {
+                "title": "chief information officer",
+                "uri": "http://data.europa.eu/esco/occupation/82f90e87-de92-4678-adae-61d3e5f7e1e4"
+            },
+            {
+                "title": "ICT technician",
+                "uri": "http://data.europa.eu/esco/occupation/3e7bf729-4442-4b9f-ad5e-83111963795c"
+            },
+            {
+                "title": "ICT system architect",
+                "uri": "http://data.europa.eu/esco/occupation/e1c72b5f-4c5c-487c-a6df-e84b64a51dae"
+            },
+            {
+                "title": "digital games developer",
+                "uri": "http://data.europa.eu/esco/occupation/9ebaf3f0-0be0-47b7-b2b1-b3b04130fa81"
+            }
+        ]
+    },
+    "React": {
+        "esco_title": "JavaScript Framework",
+        "uri": "http://data.europa.eu/esco/skill/9b9de2a4-d8af-4a7b-933a-a8334ae60067",
+        "essential_occupations": [
+            {
+                "title": "web designer",
+                "uri": "http://data.europa.eu/esco/occupation/30ed83ba-cc89-4d9f-a59d-5c783c1da56e"
+            }
+        ],
+        "optional_occupations": [
+            {
+                "title": "web developer",
+                "uri": "http://data.europa.eu/esco/occupation/c40a2919-48a9-40ea-b506-1f34f693496d"
+            },
+            {
+                "title": "ICT application developer",
+                "uri": "http://data.europa.eu/esco/occupation/bd272aee-adc9-4a06-a15c-a73b4b4a46a7"
+            },
+            {
+                "title": "cloud software developer",
+                "uri": "http://data.europa.eu/esco/occupation/781a6350-e686-45b9-b075-e4c8d5a05ff7"
+            },
+            {
+                "title": "software developer",
+                "uri": "http://data.europa.eu/esco/occupation/f2b15a0e-e65a-438a-affb-29b9d50b77d1"
+            },
+            {
+                "title": "computer scientist",
+                "uri": "http://data.europa.eu/esco/occupation/e3229e40-f571-4b26-baca-29edc8fe313e"
+            },
+            {
+                "title": "user interface developer",
+                "uri": "http://data.europa.eu/esco/occupation/866c7813-2c03-47d7-9bdc-192cfbace57c"
+            },
+            {
+                "title": "database developer",
+                "uri": "http://data.europa.eu/esco/occupation/b11e1742-5e28-4270-b081-b0193d85ee7d"
+            }
+        ]
+    },
+    "Docker_Kubernetes": {
+        "esco_title": "manage ICT virtualisation environments",
+        "uri": "http://data.europa.eu/esco/skill/ae4f0cc6-e0b9-47f5-bdca-2fc2e6316dce",
+        "essential_occupations": [
+            {
+                "title": "ICT network administrator",
+                "uri": "http://data.europa.eu/esco/occupation/81480b40-a318-47f3-9b2c-56b69ed67d95"
+            },
+            {
+                "title": "ICT change and configuration manager",
+                "uri": "http://data.europa.eu/esco/occupation/3b1ea27c-781c-41eb-821f-214285260dd2"
+            }
+        ],
+        "optional_occupations": [
+            {
+                "title": "ICT security administrator",
+                "uri": "http://data.europa.eu/esco/occupation/0464b062-cea6-4164-b10d-956c61956ae7"
+            }
+        ]
+    }
+}

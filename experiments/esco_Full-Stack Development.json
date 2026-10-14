@@ -1,0 +1,628 @@
+{
+    "total": 1439,
+    "offset": 0,
+    "limit": 10,
+    "text": "Full-Stack Development",
+    "language": "en",
+    "type": [
+        "skill"
+    ],
+    "isInScheme": null,
+    "facet": null,
+    "_links": {
+        "self": {
+            "href": "https://ec.europa.eu/esco/api/search?text=Full-Stack%20Development&type=skill&limit=10&offset=0&full=false&viewObsolete=false&language=en"
+        },
+        "next": {
+            "href": "https://ec.europa.eu/esco/api/search?text=Full-Stack%20Development&type=skill&limit=10&offset=1&full=false&viewObsolete=false&language=en"
+        }
+    },
+    "_embedded": {
+        "results": [
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/2fee495f-768c-4962-b165-abb698ea910d",
+                "searchHit": "manage logs segregation and stacking",
+                "title": "manage logs segregation and stacking",
+                "preferredLabel": {
+                    "de": "Baumstämme trennen und stapeln",
+                    "no": "administrere segregering og stabling av tømmerstokker",
+                    "fi": "vastata tukkien erottelusta ja pinoamisesta",
+                    "pt": "gerir as operações de segregação e empilhamento dos toros",
+                    "bg": "управляване на подбора и подреждането на трупи",
+                    "lt": "valdyti rąstų atskyrimą ir krovimą į rietuves",
+                    "hr": "odvajati i slagati trupce",
+                    "lv": "vadīt apaļkoku sadalīšanu un kraušanu",
+                    "fr": "organiser le tri et l’empilage de grumes",
+                    "hu": "farönk elkülönítést és felhalmozást végez",
+                    "uk": "керувати розділенням та укладанням колод",
+                    "sk": "riadiť oddeľovanie a uskladnenie guľatiny",
+                    "sl": "upravljati ločevanje in zlaganje hlodov",
+                    "ga": "deighilt agus cruachadh lomán a bhainistiú",
+                    "sv": "sköta sortering och uppläggning av virke",
+                    "el": "διαχείριση του διαχωρισμού και του στοιβάγματος κορμοτεμαχίων",
+                    "mt": "immaniġġjar tas-segregazzjoni u tal-istivar taz-zkuk għall-injam",
+                    "en": "manage logs segregation and stacking",
+                    "is": "hefur umsjón með aðgreiningu trjábola og stöflun",
+                    "it": "gestire la segregazione e l’accatastamento dei tronchi",
+                    "es": "gestionar la segregación y el apilamiento de troncos",
+                    "et": "palkide eraldamist ja virnastamist haldama",
+                    "cs": "řídit oddělování klád a stohování",
+                    "ar": "الإشراف على فصل جذوع الأشجار وتكديسها",
+                    "pl": "zarządzać segregacją i układaniem pozyskanego drewna",
+                    "da": "håndtere sortering og stabling af stammer",
+                    "ro": "supraveghează separarea și stivuirea buștenilor",
+                    "nl": "scheiden en stapelen van stammen uitvoeren"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/682bb7ca-dbe9-4c33-9c7a-1ae56e28516e"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/2fee495f-768c-4962-b165-abb698ea910d&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/2fee495f-768c-4962-b165-abb698ea910d",
+                        "title": "manage logs segregation and stacking"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/0d9570c4-76bd-41f5-a050-c692716b7e5a",
+                "searchHit": "lift stacks of paper",
+                "title": "lift stacks of paper",
+                "preferredLabel": {
+                    "de": "Papierstapel heben",
+                    "no": "løfte papirbunker",
+                    "fi": "nostaa paperipinoja",
+                    "pt": "levantar pilhas de documentos",
+                    "bg": "повдигане на купчини хартия",
+                    "lt": "kelti popieriaus šūsnis",
+                    "hr": "dizati gomile naslaganog papira",
+                    "lv": "pacelt papīru kaudzes",
+                    "fr": "soulever des piles de papier",
+                    "hu": "felemeli a papíroszlopokat",
+                    "uk": "піднімати стоси паперу",
+                    "sk": "dvíhať stohy papiera",
+                    "sl": "dvigovati kupe papirja",
+                    "ga": "cairn pháipéir a ardú",
+                    "sv": "lyfta pappershögar",
+                    "el": "ανέλκυση στοιβών χαρτιών",
+                    "mt": "irfigħ ta’ riżmi ta’ karti",
+                    "en": "lift stacks of paper",
+                    "is": "lyftir pappírsstafla",
+                    "it": "sollevare pile di carta",
+                    "es": "levantar pilas de papel",
+                    "et": "paberivirnu tõstma",
+                    "cs": "zvedat stohy papíru",
+                    "ar": "رفع حزم الأوراق",
+                    "pl": "podnosić sterty papieru",
+                    "da": "løfte papirstakke",
+                    "ro": "ridică teancuri de hârtie",
+                    "nl": "stapels papier optillen"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/e852a2ed-c32e-4a39-bc4c-65a78ffe6bf2"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/0d9570c4-76bd-41f5-a050-c692716b7e5a&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/0d9570c4-76bd-41f5-a050-c692716b7e5a",
+                        "title": "lift stacks of paper"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/0b281f3a-7faa-456e-a837-b08544d013d6",
+                "searchHit": "ferment stacks of tobacco leaves",
+                "title": "ferment stacks of tobacco leaves",
+                "preferredLabel": {
+                    "de": "Tabakblätterstapel fermentieren",
+                    "no": "gjære bunker av tobakksblader",
+                    "fi": "fermentoida tupakanlehtipinoja",
+                    "pt": "fermentar pilhas de folhas de tabaco",
+                    "bg": "ферментиране на купчини с тютюневи листа",
+                    "lt": "fermentuoti tabako lapus",
+                    "hr": "fermentirati listove duhana u stogovima",
+                    "lv": "veikt tabakas lapu fermentāciju kaudzē",
+                    "fr": "faire fermenter des feuilles de tabac empilées",
+                    "hu": "dohánylevélhalmokat erjeszt",
+                    "uk": "ферментувати стоси листя тютюну",
+                    "sk": "fermentovať stohy tabakových listov",
+                    "sl": "fermentirati kopice tobačnih listov",
+                    "ga": "cairn duilleog tobac a choipeadh",
+                    "sv": "jäsa högar av tobaksblad",
+                    "el": "ζύμωση των στοιβών φύλλων καπνού",
+                    "mt": "fermentazzjoni ta’ munzelli tal-weraq tat-tabakk",
+                    "en": "ferment stacks of tobacco leaves",
+                    "is": "láta bunka af tóbakslaufum gerjast",
+                    "it": "eseguire la fermentazione con impilatura delle foglie di tabacco",
+                    "es": "fermentar pilas de hojas de tabaco",
+                    "et": "tubakalehti virnas fermenteerima",
+                    "cs": "fermentovat tabákové listy ve stozích",
+                    "ar": "تخمير أكوام أوراق التبغ",
+                    "pl": "przeprowadzać fermentację stosów liści tytoniowych",
+                    "da": "fermentere stakke af tobaksblade",
+                    "ro": "realizează procesul de fermentare a baloturilor de frunze de tutun",
+                    "nl": "tabaksbladeren gestapeld laten gisten"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/3eacdaa9-fe4a-49ba-a085-c798097cf8d4"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/0b281f3a-7faa-456e-a837-b08544d013d6&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/0b281f3a-7faa-456e-a837-b08544d013d6",
+                        "title": "ferment stacks of tobacco leaves"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/7f0b1a66-ebaf-4c8a-b606-4c1844eb692e",
+                "searchHit": "Ensure correct operations which comply fully with specific needs and outcomes in terms of the development, integration, security and overall management of ICT systems.",
+                "title": "attend to ICT systems quality",
+                "preferredLabel": {
+                    "de": "IKT-Systemqualität beachten",
+                    "no": "ivareta IKT-systemkvalitet",
+                    "fi": "huolehtia ICT-järjestelmien laadusta",
+                    "pt": "assegurar a qualidade dos sistemas informáticos",
+                    "bg": "следене на качеството на ИКТ системите",
+                    "lt": "prižiūrėti informacinių ir ryšių technologijų sistemų kokybę",
+                    "hr": "posvetiti se kvaliteti IKT sustava",
+                    "lv": "pievērst uzmanību IKT sistēmu kvalitātei",
+                    "fr": "veiller à la qualité des systèmes d’information et de communication",
+                    "hu": "IKT rendszer minőségbiztosítását végzi",
+                    "uk": "стежити за якістю ІКТ-систем",
+                    "sk": "dohliadať na kvalitu systémov IKT",
+                    "sl": "zagotoviti kakovost sistemov IKT",
+                    "ga": "freastal ar cháilíocht córas TFC",
+                    "sv": "sköta om IT-systemkvaliteten",
+                    "el": "απόδοση προσοχής στην ποιότητα των συστημάτων ΤΠΕ",
+                    "mt": "għoti ta’ attenzjoni għall-kwalità tas-sistemi tal-ICT",
+                    "en": "attend to ICT systems quality",
+                    "is": "sinna gæðum UT-kerfa",
+                    "it": "preservare la qualità dei sistemi TIC",
+                    "es": "prestar atención a la calidad de los sistemas informáticos",
+                    "et": "IKT-süsteemide kvaliteedi eest hoolitsema",
+                    "cs": "věnovat pozornost kvalitě ICt systémů",
+                    "ar": "الإهتمام بجودة نظم تكنولوجيا المعلومات والاتصالات",
+                    "pl": "zapewniać odpowiedni poziom funkcjonowania systemów ICT",
+                    "da": "overvåge kvaliteten af IKT-systemer",
+                    "ro": "se ocupă de calitatea sistemelor de TIC",
+                    "nl": "aandacht besteden aan de kwaliteit van ICT-systemen"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/6c930acd-c104-4ece-acf7-f44fd7333036"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills",
+                    "http://data.europa.eu/esco/concept-scheme/6c930acd-c104-4ece-acf7-f44fd7333036"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderSkill": [
+                    "http://data.europa.eu/esco/skill/35ebe444-9ece-4fbc-a55d-e99ea37267ae"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/185c56ee-098f-46a1-af87-56337085da6f"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/7f0b1a66-ebaf-4c8a-b606-4c1844eb692e&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/7f0b1a66-ebaf-4c8a-b606-4c1844eb692e",
+                        "title": "attend to ICT systems quality"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/1718a52f-135c-4950-8cdc-e48939236649",
+                "searchHit": "perform full leather conversions",
+                "title": "perform full leather conversions",
+                "preferredLabel": {
+                    "de": "Umrüstung auf Vollleder durchführen",
+                    "no": "rehabiliterer helskinnoverflater i biler",
+                    "fi": "tehdä täysnahkaverhoilu",
+                    "pt": "revestir interiores a couro de forma personalizada",
+                    "bg": "пълно тапициране на автомобилни салони с кожа",
+                    "lt": "pakeisti visus apmušalus odiniais apmušalais",
+                    "hr": "obavljati potpuno tapeciranje kožom",
+                    "lv": "izgatavot salona ādas apdari",
+                    "fr": "effectuer des transformations entièrement en cuir",
+                    "hu": "személyre szabja a bőrüléseket",
+                    "uk": "наносити шкіряну оббивку",
+                    "sk": "vykonať celkové prevedenie interiéru vozidla v koži",
+                    "sl": "obleči vse sedeže vozila v usnje",
+                    "ga": "tiontúcháin iomlána leathair a dhéanamh",
+                    "sv": "klä om fordon i läder",
+                    "el": "τοποθέτηση δερμάτινης επένδυσης στο εσωτερικό του οχήματος",
+                    "mt": "twettiq tax-xogħol tat-tapizzerija tal-ġilda personalizzata",
+                    "en": "perform full leather conversions",
+                    "is": "framkvæmir heildarumskipti á leðri",
+                    "it": "convertire in pelle gli interni di un veicolo",
+                    "es": "realizar conversiones completas de cuero",
+                    "et": "sõidukit täisnahkkatenditega sisustama",
+                    "cs": "vytvářet koženou úpravu interiéru",
+                    "ar": "اجراء تحويلات جلدية كاملة",
+                    "pl": "przeprowadzać pełną wymianę tapicerki na skórzaną",
+                    "da": "udføre komplette læderombetrækninger",
+                    "ro": "efectuează retapițarea cu piele a interiorului autovehiculelor",
+                    "nl": "volledig in leer bekleden"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/occupation-specific"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/62023d5b-22ea-442e-ac46-39eb83c986fb"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/1718a52f-135c-4950-8cdc-e48939236649&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/1718a52f-135c-4950-8cdc-e48939236649",
+                        "title": "perform full leather conversions"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/071f0eca-4189-433f-9d6c-edde50593300",
+                "searchHit": "stack timber",
+                "title": "stack timber",
+                "preferredLabel": {
+                    "de": "Holz stapeln",
+                    "no": "stable tømmer",
+                    "fi": "pinota puutavaraa",
+                    "pt": "empilhar madeira",
+                    "bg": "подреждане на дървен материал на купчини",
+                    "lt": "sukrauti medieną",
+                    "hr": "slagati drvnu građu",
+                    "lv": "krautnēt kokmateriālus",
+                    "fr": "empiler du bois",
+                    "hu": "oszlopba rendezi a faanyagot",
+                    "uk": "складати деревину",
+                    "sk": "ukladať drevo",
+                    "sl": "zlagati les",
+                    "ga": "adhmad leagtha a charnadh",
+                    "sv": "stapla timmer",
+                    "el": "στοιβασία ξυλείας",
+                    "mt": "stivar tal-injam",
+                    "en": "stack timber",
+                    "is": "staflar timbri",
+                    "it": "impilare il legname",
+                    "es": "apilar madera",
+                    "et": "puitmaterjali virnastama",
+                    "cs": "skládat na sebe řezivo",
+                    "ar": "حزم الأخشاب",
+                    "pl": "układać sterty drewna",
+                    "da": "stable træ",
+                    "ro": "stivuiește lemn de construcție",
+                    "nl": "timmerhout stapelen"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/e963cf1f-dc3c-48b2-a0fa-274f5e7f50f6"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/071f0eca-4189-433f-9d6c-edde50593300&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/071f0eca-4189-433f-9d6c-edde50593300",
+                        "title": "stack timber"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/3786b61f-f22e-48d1-af8d-ad4c354534db",
+                "searchHit": "The steps required through which a material is transformed into a product, its development and full-scale manufacturing.",
+                "title": "manufacturing processes",
+                "preferredLabel": {
+                    "de": "Fertigungsverfahren",
+                    "no": "produksjonsprosess",
+                    "fi": "valmistusprosessit",
+                    "pt": "processos de fabrico",
+                    "bg": "производствени процеси",
+                    "lt": "gamybos procesai",
+                    "hr": "postupci u proizvodnji",
+                    "lv": "ražošanas process",
+                    "fr": "procédés de fabrication",
+                    "hu": "gyártási eljárások",
+                    "uk": "виробничі процеси",
+                    "sk": "výrobné postupy",
+                    "sl": "proizvodni postopki",
+                    "ga": "próisis mhonaraíochta",
+                    "sv": "tillverkningsprocesser",
+                    "el": "διαδικασίες κατασκευής",
+                    "mt": "proċessi tal-manifattura",
+                    "en": "manufacturing processes",
+                    "is": "iðnframleiðsluferli",
+                    "it": "processi di fabbricazione",
+                    "es": "métodos de fabricación",
+                    "et": "tootmisprotsessid",
+                    "cs": "výrobní procesy",
+                    "ar": "عمليات التصنيع",
+                    "pl": "procesy wytwarzania",
+                    "da": "fremstillingsprocesser",
+                    "ro": "procese de producție",
+                    "nl": "fabricageprocessen"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/knowledge"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/cross-sector"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/isced-f/0722"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/3786b61f-f22e-48d1-af8d-ad4c354534db&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/3786b61f-f22e-48d1-af8d-ad4c354534db",
+                        "title": "manufacturing processes"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/3d086228-d7fc-4c23-972a-22b7d44a6173",
+                "searchHit": "stack goods",
+                "title": "stack goods",
+                "preferredLabel": {
+                    "de": "Waren stapeln",
+                    "no": "stable varer",
+                    "fi": "pinota tavaroita",
+                    "pt": "empilhamento de mercadorias",
+                    "bg": "подреждане на стоки",
+                    "lt": "krauti prekes",
+                    "hr": "slagati robu",
+                    "lv": "kraut preces",
+                    "fr": "empilage de marchandises",
+                    "hu": "az árukat egymásra pakolja",
+                    "uk": "укладати товари",
+                    "sk": "naskladanie nákladu",
+                    "sl": "zlagati blago",
+                    "ga": "earraí a chur i gceann a chéile",
+                    "sv": "stapla varor",
+                    "el": "στοιβασία εμπορευμάτων",
+                    "mt": "stivar tal-oġġetti",
+                    "en": "stack goods",
+                    "is": "staflar vörum",
+                    "it": "impilare le merci",
+                    "es": "apilar mercancías",
+                    "et": "kaupu konteineritesse laadima",
+                    "cs": "stohování zboží",
+                    "ar": "تكديس البضائع",
+                    "pl": "układać towary",
+                    "da": "stable varer",
+                    "ro": "stivuiește mărfuri",
+                    "nl": "goederen stapelen"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/cross-sector"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/e852a2ed-c32e-4a39-bc4c-65a78ffe6bf2"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/3d086228-d7fc-4c23-972a-22b7d44a6173&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/3d086228-d7fc-4c23-972a-22b7d44a6173",
+                        "title": "stack goods"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/3dbb132f-fb62-4227-8277-7c89a9fe4749",
+                "searchHit": "Compile full reports of appraisals of properties, businesses, or other goods and services being appraised using all the data gathered during the appraisal and valuation process, such as financial history, ownership, and developments.",
+                "title": "compile appraisal reports",
+                "preferredLabel": {
+                    "de": "Schätzergutachten zusammenstellen",
+                    "no": "sette sammen oppskrivingsrapporter",
+                    "fi": "koota arviointiraportteja",
+                    "pt": "compilar relatórios de avaliação",
+                    "bg": "сравняване на доклади за оценка",
+                    "lt": "parengti vertinimo ataskaitas",
+                    "hr": "sastavljati izvješća o procjeni vrijednosti imovine",
+                    "lv": "sastādīt novērtējuma ziņojumus",
+                    "fr": "compiler des rapports d’estimation",
+                    "hu": "összeállítja az értékbecslési szakvéleményeket",
+                    "uk": "складати звіти про оцінку",
+                    "sk": "vypracovať správu o ohodnotení",
+                    "sl": "pripravljati cenitvena poročila",
+                    "ga": "tuarascálacha breithmheasa a chur le chéile",
+                    "sv": "sammanställa värderingsrapporter",
+                    "el": "κατάρτιση εκθέσεων αξιολόγησης",
+                    "mt": "tfassil tar-rapporti ta’ evalwazzjoni",
+                    "en": "compile appraisal reports",
+                    "is": "safnar saman matsskýrslum",
+                    "it": "compilare le relazioni di valutazione",
+                    "es": "preparar informes de evaluación",
+                    "et": "hindamisakte koostama",
+                    "cs": "připravovat posudkové zprávy",
+                    "ar": "إعداد تقرير التقييم",
+                    "pl": "sporządzać sprawozdania z wyceny",
+                    "da": "samle vurderingsrapporter",
+                    "ro": "compilează rapoarte de evaluare",
+                    "nl": "beoordelingsrapporten opstellen"
+                },
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/cross-sector"
+                ],
+                "broaderSkill": [
+                    "http://data.europa.eu/esco/skill/be6ab363-3de1-427f-a8ef-85d5b0250822"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/b32ef8a5-e3f7-40ef-8b40-913c003e1f4e"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/3dbb132f-fb62-4227-8277-7c89a9fe4749&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/3dbb132f-fb62-4227-8277-7c89a9fe4749",
+                        "title": "compile appraisal reports"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/06e347f2-2504-4ee8-b7f7-8d9542f56207",
+                "searchHit": "translate keywords into full texts",
+                "title": "translate keywords into full texts",
+                "preferredLabel": {
+                    "de": "Stichwörter in vollständige Texte umsetzen",
+                    "no": "oversette søkeord til fullstendige tekster",
+                    "fi": "kirjoittaa tekstejä asiasanojen perusteella",
+                    "pt": "transformar palavras-chave em textos integrais",
+                    "bg": "писане на текстове въз основа на ключови думи",
+                    "lt": "rašyti tekstus remiantis svarbiausiais reikšminiais žodžiais",
+                    "hr": "pretvarati ključne riječi u čitave tekstove",
+                    "lv": "pārvērst atslēgvārdus pilnā tekstā",
+                    "fr": "traduire des mots clés en texte rédactionnel",
+                    "hu": "kulcsszavakból összefüggő szöveget készít",
+                    "uk": "перетворювати ключові слова в повноцінні тексти",
+                    "sk": "pretvoriť kľúčové slová na úplné texty",
+                    "sl": "pretvarjati ključne besede v celovita besedila",
+                    "ga": "eochairfhocail a aistriú ina dtéacsanna iomlána",
+                    "sv": "utarbeta fullständiga texter utifrån nyckelord",
+                    "el": "μετατροπή λέξεων-κλειδιών σε πλήρη κείμενα",
+                    "mt": "traduzzjoni tal-kelmiet ewlenin f’testi sħaħ",
+                    "en": "translate keywords into full texts",
+                    "is": "þýðir stikkorð yfir á fullskrifaðan texta",
+                    "it": "tradurre le parole chiave in testi completi",
+                    "es": "convertir palabras clave en un texto completo",
+                    "et": "võtmesõnade põhjal tekste koostama",
+                    "cs": "připravovat texty pomocí klíčových slov",
+                    "ar": "ترجمة الكلمات الرئيسية إلى نصوص كاملة",
+                    "pl": "przekształcać słowa kluczowe w pełne teksty",
+                    "da": "oversætte nøgleord til fuldtekst",
+                    "ro": "redactează texte pe baza unor cuvinte-cheie",
+                    "nl": "kernwoorden omzetten in volledige teksten"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/cross-sector"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/9bdf8a77-8524-43da-bac6-d15d22e1b7ed"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/06e347f2-2504-4ee8-b7f7-8d9542f56207&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/06e347f2-2504-4ee8-b7f7-8d9542f56207",
+                        "title": "translate keywords into full texts"
+                    }
+                }
+            }
+        ]
+    }
+}

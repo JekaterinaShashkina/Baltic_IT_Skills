@@ -1,0 +1,632 @@
+{
+    "total": 328,
+    "offset": 0,
+    "limit": 10,
+    "text": "CI and CD",
+    "language": "en",
+    "type": [
+        "skill"
+    ],
+    "isInScheme": null,
+    "facet": null,
+    "_links": {
+        "self": {
+            "href": "https://ec.europa.eu/esco/api/search?text=CI%20and%20CD&type=skill&limit=10&offset=0&full=false&viewObsolete=false&language=en"
+        },
+        "next": {
+            "href": "https://ec.europa.eu/esco/api/search?text=CI%20and%20CD&type=skill&limit=10&offset=1&full=false&viewObsolete=false&language=en"
+        }
+    },
+    "_embedded": {
+        "results": [
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/f47a1998-0beb-43be-9f46-380aa4d183da",
+                "searchHit": "Jenkins CI",
+                "title": "Jenkins (tools for software configuration management)",
+                "preferredLabel": {
+                    "de": "Jenkins (Werkzeuge für das Software-Konfigurationsmanagement)",
+                    "no": "Jenkins (verktøy for programvarekonfigurasjonsstyring)",
+                    "fi": "Jenkins (työkalut ohjelmiston kokoonpanon hallintaan)",
+                    "pt": "Jenkins (ferramentas de gestão de configuração de software)",
+                    "bg": "Jenkins (инструменти за управление на конфигурирането на софтуер)",
+                    "lt": "„Jenkins“ (programinės įrangos konfigūracijos valdymo įrankiai)",
+                    "hr": "Jenkins (alati za upravljanje konfiguracijom softvera)",
+                    "lv": "Jenkins (programmatūras konfigurācijas pārvaldības rīki)",
+                    "fr": "Jenkins (outils de gestion de configuration logicielle)",
+                    "hu": "Jenkins (szoftverkonfiguráció-kezelési eszközök)",
+                    "uk": "Jenkins (інструменти для управління конфігурацією програмного забезпечення)",
+                    "sk": "Jenkins (nástroje na riadenie konfigurácie softvéru)",
+                    "sl": "Jenkins (orodja za upravljanje konfiguracije programske opreme)",
+                    "ga": "Jenkins (uirlisí le haghaidh cumraíocht bogearraí a bhainistiú)",
+                    "sv": "Jenkins (verktyg för hantering av programkonfiguration)",
+                    "el": "Jenkins (εργαλεία για τη διαχείριση της παραμετροποίησης λογισμικού)",
+                    "mt": "Jenkins (għodod għall-ġestjoni tal-konfigurazzjoni tas-softwer)",
+                    "en": "Jenkins (tools for software configuration management)",
+                    "is": "Jenkins (verkfæri fyrir umsjón með hugbúnaðarstillingum)",
+                    "it": "Jenkins (strumenti per la gestione della configurazione software)",
+                    "es": "Jenkins (herramientas para la gestión de la configuración del software)",
+                    "et": "Jenkins (tarkvara konfiguratsiooni haldamise tööriistad)",
+                    "cs": "Jenkins (nástroje pro správu konfigurace softwaru)",
+                    "ar": "Jenkins",
+                    "pl": "Jenkins (narzędzia zarządzania konfiguracją oprogramowania)",
+                    "da": "Jenkins (redskaber til styring af softwarekonfiguration)",
+                    "ro": "Jenkins (instrumente pentru gestionarea configurației software)",
+                    "nl": "Jenkins (hulpmiddelen voor het beheer van softwareconfiguratie)"
+                },
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills",
+                    "http://data.europa.eu/esco/concept-scheme/6c930acd-c104-4ece-acf7-f44fd7333036"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/knowledge"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderSkill": [
+                    "http://data.europa.eu/esco/skill/9d2e926f-53d9-41f5-98f3-19dfaa687f3f"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/isced-f/0613"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/f47a1998-0beb-43be-9f46-380aa4d183da&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/f47a1998-0beb-43be-9f46-380aa4d183da",
+                        "title": "Jenkins (tools for software configuration management)"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/ccb2e5f2-4279-48fd-9d85-a1db42ff1e13",
+                "searchHit": "The process for the effective management of the key project artefacts and deliverables, ensuring that the correct versions are delivered to the project requestor and allowing project managers to identify the latest state of project artefacts and be able to gather all sources, documents, and other information for the project, prevent unauthorised changes, guarantee artefacts traceability and return to previous versions. It comprises the identification of project configuration items (CIs), their attributes and status codes, the establishment of baselines, the definition of roles and responsibilities for authorised changes to CIs, and the maintenance and control of a project repository.",
+                "title": "project configuration management",
+                "preferredLabel": {
+                    "de": "Projekt-Konfigurationsmanagement",
+                    "no": "prosjektkonfigurasjonsstyring",
+                    "fi": "projektin konfiguraationhallinta",
+                    "pt": "gestão da configuração do projeto",
+                    "bg": "управление на конфигурацията на проекта",
+                    "lt": "projektų konfigūracijos valdymas",
+                    "hr": "upravljanje projektnom konfiguracijom",
+                    "lv": "projekta konfigurēšanas pārvaldība",
+                    "fr": "gestion de configuration de projet",
+                    "hu": "projektkonfigurációs irányítás",
+                    "uk": "управління конфігурацією проєкту",
+                    "sk": "riadenie konfigurácie projektu",
+                    "sl": "upravljanje konfiguracije projekta",
+                    "ga": "cumraíocht tionscadail a bhainistiú",
+                    "sv": "konfigurationsledning",
+                    "el": "διαχείριση διαμόρφωσης έργου",
+                    "mt": "immaniġġjar tal-konfigurazzjoni tal-proġett",
+                    "en": "project configuration management",
+                    "is": "skilvirk verkefnastjórnun",
+                    "it": "gestione della configurazione di un progetto",
+                    "es": "gestión de la configuración de los proyectos",
+                    "et": "projekti konfiguratsiooni juhtimine",
+                    "cs": "řízení konfigurace projektu",
+                    "ar": "إدارة تشكيل المشروع",
+                    "pl": "zarządzanie konfiguracją projektu",
+                    "da": "projektkonfigurationsstyring",
+                    "ro": "managementul documentelor proiectului",
+                    "nl": "projectconfiguratiebeheer"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/knowledge"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/cross-sector"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/isced-f/0413"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/ccb2e5f2-4279-48fd-9d85-a1db42ff1e13&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/ccb2e5f2-4279-48fd-9d85-a1db42ff1e13",
+                        "title": "project configuration management"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/bc8b2c74-cce5-497e-85c2-51d3ede632ad",
+                "searchHit": "The different types of audiovisual products and their requirements, such as documentaries, low budget movies, television series, records, CDs, and others.",
+                "title": "audiovisual products",
+                "preferredLabel": {
+                    "de": "audiovisuelle Produkte",
+                    "no": "audiovisuelle produkter",
+                    "fi": "audiovisuaaliset tuotteet",
+                    "pt": "produtos audiovisuais",
+                    "bg": "аудио-визуални продукти",
+                    "lt": "garso ir vaizdo produktai",
+                    "hr": "audiovizualni proizvodi",
+                    "lv": "audiovizuālie materiāli",
+                    "fr": "produits audiovisuels",
+                    "hu": "audiovizuális termékek",
+                    "uk": "аудіовізуальна продукція",
+                    "sk": "audiovizuálne výrobky",
+                    "sl": "avdiovizualni izdelki",
+                    "ga": "táirgí closamhairc",
+                    "sv": "audiovisuella produkter",
+                    "el": "οπτικοακουστικά προϊόντα",
+                    "mt": "prodotti awdjoviżivi",
+                    "en": "audiovisual products",
+                    "is": "vörur fyrir hljóð og mynd",
+                    "it": "prodotti audiovisivi",
+                    "es": "productos audiovisuales",
+                    "et": "audiovisuaaltooted",
+                    "cs": "audiovizuální produkty",
+                    "ar": "المنتجات السمعية والبصرية",
+                    "pl": "dzieła audiowizualne",
+                    "da": "audiovisuelle produkter",
+                    "ro": "produse audiovizuale",
+                    "nl": "audiovisuele producten"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/knowledge"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/isced-f/0211"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/bc8b2c74-cce5-497e-85c2-51d3ede632ad&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/bc8b2c74-cce5-497e-85c2-51d3ede632ad",
+                        "title": "audiovisual products"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/ad008df3-dcaf-45ee-8892-2319a3b66c98",
+                "searchHit": "Supervise and oversee day-to-day operational and clinical information system activities such as CIS, which are used for collecting and storing clinical information regarding the healthcare delivery process.",
+                "title": "oversee clinical information system activities",
+                "preferredLabel": {
+                    "de": "den Betrieb klinischer Informationssysteme betreuen",
+                    "no": "overvåke aktiviteter i klinisk informasjonssystem",
+                    "fi": "valvoa kliinisten tietojärjestelmien toimintaa",
+                    "pt": "supervisionar as atividades dos sistemas de informação clínica",
+                    "bg": "осъществяване на надзор върху функционирането на системата за клинична информация",
+                    "lt": "stebėti klinikinės informacijos sistemos veikimą",
+                    "hr": "nadzirati aktivnosti kliničkog informacijskog sustava",
+                    "lv": "pārraudzīt klīniskās informācijas sistēmas darbības",
+                    "fr": "superviser les activités des systèmes d’information clinique",
+                    "hu": "felügyeli a klinikai információs rendszer tevékenységeit",
+                    "uk": "наглядати за діяльністю клініко-інформаційних систем",
+                    "sk": "dohliadať na činnosť klinických informačných systémov",
+                    "sl": "nadzirati dejavnosti kliničnega informacijskega sistema",
+                    "ga": "maoirseacht a dhéanamh ar ghníomhaíochtaí cliniciúla córas faisnéise",
+                    "sv": "ha uppsikt över användningen av kliniska informationssystem",
+                    "el": "εποπτεία των δραστηριοτήτων του συστήματος κλινικών πληροφοριών",
+                    "mt": "sorveljanza tal-attivitajiet kliniċi tas-sistemi tal-informazzjoni",
+                    "en": "oversee clinical information system activities",
+                    "is": "fer yfir notkun klínískra upplýsingakerfa",
+                    "it": "supervisionare le attività del sistema informativo clinico",
+                    "es": "supervisar el funcionamiento de los sistemas de información clínica",
+                    "et": "kliinilise infosüsteemi toimimise üle järelevalvet korraldama",
+                    "cs": "dohlížet na činnost klinických informačních systémů",
+                    "ar": "الاشراف على أنشطة نظام المعلومات السريرية",
+                    "pl": "nadzorować działania podejmowane w ramach klinicznego systemu informatycznego",
+                    "da": "føre tilsyn med klinisk informationssystem",
+                    "ro": "supraveghează activități ale sistemului de informații clinice",
+                    "nl": "toezien op activiteiten van klinische informatiesystemen"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/6c930acd-c104-4ece-acf7-f44fd7333036"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills",
+                    "http://data.europa.eu/esco/concept-scheme/6c930acd-c104-4ece-acf7-f44fd7333036"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/occupation-specific"
+                ],
+                "broaderSkill": [
+                    "http://data.europa.eu/esco/skill/75d8e5d9-bef3-418b-9011-01bff9f27207"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/32c017fd-28ab-4051-bf68-74de952c2f77"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/ad008df3-dcaf-45ee-8892-2319a3b66c98&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/ad008df3-dcaf-45ee-8892-2319a3b66c98",
+                        "title": "oversee clinical information system activities"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/16d3b69a-ea61-4d27-a91d-9a4930105b54",
+                "searchHit": "Make sure that clients' personal belongings, such as jewellery, personal documents, CDs and shoes, are properly stored, maintained and returned, according to its value and in line with organisational procedures.",
+                "title": "tend to clients' personal items",
+                "preferredLabel": {
+                    "de": "sich um die persönlichen Gegenstände von Kunden und Kundinnen kümmern",
+                    "no": "passe på klienters personlige eiendeler",
+                    "fi": "huolehtia asiakkaan tavaroista",
+                    "pt": "cuidar de artigos pessoais de clientes",
+                    "bg": "полагане на грижи за личните вещи на клиенти",
+                    "lt": "prižiūrėti kliento asmeninius daiktus",
+                    "hr": "brinuti o osobnim predmetima klijenata",
+                    "lv": "rūpēties par klientu personiskajām mantām",
+                    "fr": "s’occuper des effets personnels de clients",
+                    "hu": "gondoskodik az ügyfelek személyes tárgyainak megőrzéséről",
+                    "uk": "доглядати за особистими речами клієнтів",
+                    "sk": "dávať pozor na osobné veci klientov",
+                    "sl": "skrbeti za osebne predmete strank",
+                    "ga": "freastal ar mhíreanna pearsanta cliant",
+                    "sv": "ta hand om klienters personliga tillhörigheter",
+                    "el": "προστασία προσωπικών αντικειμένων πελατών",
+                    "mt": "attenzjoni għall-oġġetti personali tal-klijenti",
+                    "en": "tend to clients' personal items",
+                    "is": "hirðir um persónulegar eigur viðskiptavina",
+                    "it": "sorvegliare gli oggetti personali dei clienti",
+                    "es": "ocuparse de los efectos personales del cliente",
+                    "et": "klientide isiklike asjade eest hoolitsema",
+                    "cs": "pečovat o osobní věci klientů",
+                    "ar": "الاعتناء بأغراض العملاء الشخصية",
+                    "pl": "zajmować się przedmiotami osobistymi klientów",
+                    "da": "passe på klienters personlige ejendele",
+                    "ro": "are grijă de obiectele personale ale clienților",
+                    "nl": "letten op persoonlijke bezittingen van klanten"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/e963cf1f-dc3c-48b2-a0fa-274f5e7f50f6"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/16d3b69a-ea61-4d27-a91d-9a4930105b54&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/16d3b69a-ea61-4d27-a91d-9a4930105b54",
+                        "title": "tend to clients' personal items"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/a1df7062-3353-4888-9be0-edbbb7fcbbec",
+                "searchHit": "Arrange various video and music materials such as CDs and DVDs. Sort audio and video material on shelves in alphabetical order or according to genre classification.",
+                "title": "classify audio-visual products",
+                "preferredLabel": {
+                    "de": "audiovisuelle Produkte klassifizieren",
+                    "no": "klassifisere audiovisuelle produkter",
+                    "fi": "luokitella audiovisuaalisia tuotteita",
+                    "pt": "classificar produtos audiovisuais",
+                    "bg": "класифициране на аудио-визуални продукти",
+                    "lt": "klasifikuoti garso ir vaizdo produktus",
+                    "hr": "razvrstavati audiovizualne proizvode",
+                    "lv": "klasificēt audiovizuālos produktus",
+                    "fr": "classer les produits audiovisuels",
+                    "hu": "audiovizuális termékeket osztályoz",
+                    "uk": "класифікувати аудіовізуальні продукти",
+                    "sk": "klasifikovať audiovizuálne produkty",
+                    "sl": "razvrščati avdiovizualne izdelke",
+                    "ga": "táirgí closamhairc a aicmiú",
+                    "sv": "klassificera ljud- och bildprodukter",
+                    "el": "ταξινόμηση οπτικοακουστικών προϊόντων",
+                    "mt": "klassifikazzjoni ta’ prodotti awdjoviżivi",
+                    "en": "classify audio-visual products",
+                    "is": "flokka hljóð- og myndvörur",
+                    "it": "classificare i prodotti audiovisivi",
+                    "es": "clasificar productos audiovisuales",
+                    "et": "audiovisuaaltooteid klassifitseerima",
+                    "cs": "třídit nosiče s audiovizuálními nahrávkami",
+                    "ar": "تصنيف المنتجات الصوتية والبصرية",
+                    "pl": "klasyfikować dzieła audiowizualne",
+                    "da": "klassificere audiovisuelle produkter",
+                    "ro": "clasifică produse audiovizuale",
+                    "nl": "audiovisuele producten indelen"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/485b2e3b-f883-46d8-901f-ab521d4f8e58"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/a1df7062-3353-4888-9be0-edbbb7fcbbec&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/a1df7062-3353-4888-9be0-edbbb7fcbbec",
+                        "title": "classify audio-visual products"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/f9cc9cc2-462b-45c2-b897-77dae4336ba0",
+                "searchHit": "Stay informed about the latest music and video releases in all output formats: CD, DVD, Blu-Ray, vinyl, etc.",
+                "title": "stay up-to-date with music and video releases",
+                "preferredLabel": {
+                    "de": "sich über Musik- und Videoveröffentlichungen auf dem Laufenden halten",
+                    "no": "holde seg oppdatert om musikk- og videoutgivelser",
+                    "fi": "pysyä ajan tasalla musiikki- ja videojulkaisuista",
+                    "pt": "manter-se a par dos lançamentos de música e vídeo",
+                    "bg": "редовно следене на излезлите на пазара нови музикални и видео издания",
+                    "lt": "susipažinti su naujausiais muzikos ir vaizdo įrašais",
+                    "hr": "pratiti izdavanje nove glazbe i filmova",
+                    "lv": "iegūt informāciju par jaunāko mūziku un filmām",
+                    "fr": "se tenir informé des dernières sorties musicales et vidéos",
+                    "hu": "követi a zene- és videómegjelenéseket",
+                    "uk": "відстежувати останні новинки в музиці й відеозаписах",
+                    "sk": "udržiavať si aktuálny prehľad o vydaniach hudobných nosičov a videonosičov",
+                    "sl": "spremljati novosti na področju glasbe in filma",
+                    "ga": "coinneáil ar an eolas faoi eisiúintí ceoil agus físeáin",
+                    "sv": "vara uppdaterad om releaser inom musik och film",
+                    "el": "ενημέρωση για τις τελευταίες κυκλοφορίες μουσικής και βίντεο",
+                    "mt": "aġġornar mar-rilaxxi tal-mużika u vidjo",
+                    "en": "stay up-to-date with music and video releases",
+                    "is": "fylgist með nýjustu tónlistar- og myndbandaútgáfum",
+                    "it": "tenersi aggiornati sulle novità video e musicali",
+                    "es": "estar al día de los lanzamientos de grabaciones de música y vídeo",
+                    "et": "uue muusika ja videotega kursis püsima",
+                    "cs": "udržovat si přehled o aktuálních hudebních a video nahrávkách",
+                    "ar": "البقاء على اطلاع بإصدارات الموسيقى والفيديو",
+                    "pl": "monitorować najnowsze publikacje muzyczne i filmowe",
+                    "da": "holde sig ajour med musik- og videoudgivelser",
+                    "ro": "ține pasul cu ultimele noutăți audio-video",
+                    "nl": "op de hoogte blijven van nieuw uitgebrachte muziek en video’s"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/cross-sector"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/e2a5e046-3357-493e-bbdc-8d0ef82005cc"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/f9cc9cc2-462b-45c2-b897-77dae4336ba0&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/f9cc9cc2-462b-45c2-b897-77dae4336ba0",
+                        "title": "stay up-to-date with music and video releases"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/94bc9278-dc2b-41e5-b337-5bda2c020818",
+                "searchHit": "Provide customer advice in a music and video store; recommend CD's and DVD's to customers according to their individual preferences using comprehension of a wide variety of genres and styles.",
+                "title": "assist customers in selecting music and video recordings",
+                "preferredLabel": {
+                    "de": "Kunden und Kundinnen bei der Auswahl von Musik- und Videoaufnahmen Hilfestellung leisten",
+                    "no": "hjelpe kunder å velge musikk- og videoopptak",
+                    "fi": "auttaa asiakkaita musiikki- ja videotallenteiden valinnassa",
+                    "pt": "ajudar clientes a escolher gravações de música e vídeo",
+                    "bg": "помагане на клиенти при избора на музикални и видеозаписи",
+                    "lt": "padėti klientams išsirinkti muzikos ir vaizdo įrašus",
+                    "hr": "pomagati kupcima s odabirom glazbe i filmova",
+                    "lv": "palīdzēt klientiem izvēlēties mūzikas un video ierakstus",
+                    "fr": "aider des clients à choisir des enregistrements musicaux et vidéo",
+                    "hu": "zene‑ és videofelvételek kiválasztásában segíti a vásárlókat",
+                    "uk": "допомагати споживачам у виборі музики та відеозаписів",
+                    "sk": "pomáhať zákazníkom pri výbere hudobných nahrávok a videonahrávok",
+                    "sl": "pomagati strankam pri izbiri glasbenih in video posnetkov",
+                    "ga": "cabhrú le custaiméirí taifeadtaí ceoil agus físeáin a roghnú",
+                    "sv": "hjälpa kunder att välja musik- och filmprodukter",
+                    "el": "υποστήριξη πελατών κατά την επιλογή προϊόντων εγγραφής μουσικής και εικόνας",
+                    "mt": "assistenza għall-klijenti fis-selezzjoni awdjoviżiva",
+                    "en": "assist customers in selecting music and video recordings",
+                    "is": "aðstoðar viðskiptavini við val á tónlistar- og myndbandsupptökum",
+                    "it": "fornire assistenza ai clienti nella scelta di registrazioni musicali e video",
+                    "es": "ayudar a clientes a elegir grabaciones de música y video",
+                    "et": "kliente muusika- ja videosalvestiste valikul abistama",
+                    "cs": "pomáhat zákazníkům s výběrem hudebních a video nahrávek",
+                    "ar": "تقديم المساعدة للعملاء في اختيار التسجيلات الموسيقية والفيديوهات",
+                    "pl": "pomagać klientom w wyborze nagrań muzycznych i filmowych",
+                    "da": "hjælpe kunder med at vælge musik- og videoindspilninger",
+                    "ro": "acordă asistență clienților la selectarea de înregistrări muzicale și video",
+                    "nl": "klanten helpen bij de keuze van muziek- en video-opnames"
+                },
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderSkill": [
+                    "http://data.europa.eu/esco/skill/c45cc902-6a91-4449-9ee8-8c1c8e1347ae",
+                    "http://data.europa.eu/esco/skill/045f71e6-0699-4169-8a54-9c6b96f3174d"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/62afcfdd-a2a6-4143-bafb-59c77e15a01c"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/94bc9278-dc2b-41e5-b337-5bda2c020818&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/94bc9278-dc2b-41e5-b337-5bda2c020818",
+                        "title": "assist customers in selecting music and video recordings"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/07e2b2c7-c2a4-4a9b-a24a-48619e30b588",
+                "searchHit": "Monitor automated cigarette production line and stamp machine to ensure smooth operation. Monitor and report any damaged cigarette package. Stand at a machine while stamping product, using two hands for stamping andstabilising.",
+                "title": "monitor cigarette stamp machine",
+                "preferredLabel": {
+                    "de": "Stempelmaschine für Zigaretten überwachen",
+                    "no": "overvåke sigarettstempelmaskin",
+                    "fi": "valvoa savukeleimauskoneita",
+                    "pt": "monitorizar a máquina de carimbar cigarros",
+                    "bg": "наблюдаване на работата на щампмашина в производството на цигари",
+                    "lt": "kontroliuoti cigarečių etikečių klijavimo mašiną",
+                    "hr": "nadzirati stroj za porezne markice za cigarete",
+                    "lv": "uzraudzīt cigarešu akcīzes marku uzlikšanas iekārtu",
+                    "fr": "surveiller la machine à timbre",
+                    "hu": "ellenőrzi a cigarettabélyegző gépet",
+                    "uk": "контролювати машину для штампування сигарет",
+                    "sk": "monitorovanie raziaceho stroja na cigarety",
+                    "sl": "spremljati delovanje stroja za žigosanje cigaret",
+                    "ga": "monatóireacht a dhéanamh ar mheaisín stampála toitíní",
+                    "sv": "övervaka cigarettstämpelmaskin",
+                    "el": "παρακολούθηση του μηχανήματος σφράγισης των τσιγάρων",
+                    "mt": "monitoraġġ tal-magna tal-ittimbrar tas-sigaretti",
+                    "en": "monitor cigarette stamp machine",
+                    "is": "eftirfylgni framleiðslulínu sígaretta",
+                    "it": "monitorare le macchine timbratrici per sigarette",
+                    "es": "supervisar una máquina de estampillado de cigarrillos",
+                    "et": "sigarettide märgistusseadet jälgima",
+                    "cs": "monitorování kolkovače cigaret",
+                    "ar": "رصد آلة ختم السجائر",
+                    "pl": "monitorować maszynę do znakowania papierosów",
+                    "da": "overvåge cigaretstempelmaskine",
+                    "ro": "monitorizează utilajul de ștampilat pachetele de țigarete",
+                    "nl": "stempelmachines voor sigaretten monitoren"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/occupation-specific"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/dcb9c446-bb08-44de-89b6-851ac2903eaf"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/07e2b2c7-c2a4-4a9b-a24a-48619e30b588&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/07e2b2c7-c2a4-4a9b-a24a-48619e30b588",
+                        "title": "monitor cigarette stamp machine"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/c3bb5700-a94d-407a-8cd0-147727378f25",
+                "searchHit": "Collection of pollutants created by cities and its effects on air, water and ground the entire environment. \n \n \n ",
+                "title": "urban pollution implications",
+                "preferredLabel": {
+                    "de": "Auswirkungen der städtischen Umweltverschmutzung",
+                    "no": "konsekvenser knyttet til storbyforurensning",
+                    "fi": "kaupungin saastumisen vaikutukset",
+                    "pt": "implicações da poluição urbana",
+                    "bg": "въздействие на градското замърсяване",
+                    "lt": "miesto taršos poveikis",
+                    "hr": "posljedice onečišćenja gradova",
+                    "lv": "pilsētu piesārņojuma ietekme",
+                    "fr": "implications de la pollution urbaine",
+                    "hu": "a városi környezetszennyezés következményei",
+                    "uk": "наслідки міського забруднення",
+                    "sk": "dôsledky znečistenia miest",
+                    "sl": "posledice onesnaženja v mestih",
+                    "ga": "impleachtaí an truaillithe uirbigh",
+                    "sv": "följder av föroreningar i stadsmiljö",
+                    "el": "επιπτώσεις αστικής ρύπανσης",
+                    "mt": "implikazzjonijiet tat-tniġġis urban",
+                    "en": "urban pollution implications",
+                    "is": "áhrif þéttbýlismengunar",
+                    "it": "implicazioni dell’inquinamento urbano",
+                    "es": "consecuencias de la contaminación urbana",
+                    "et": "linnakeskkonna saaste mõju",
+                    "cs": "důsledky městského znečištění",
+                    "ar": "آثار التلوث الحضري",
+                    "pl": "wpływ zanieczyszczeń na obszarach miejskich",
+                    "da": "konsekvenser af byforurening",
+                    "ro": "implicații ale poluării urbane",
+                    "nl": "gevolgen van stedelijke verontreiniging"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills",
+                    "http://data.europa.eu/esco/concept-scheme/green"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills",
+                    "http://data.europa.eu/esco/concept-scheme/green"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/knowledge"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/isced-f/0712"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/c3bb5700-a94d-407a-8cd0-147727378f25&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/c3bb5700-a94d-407a-8cd0-147727378f25",
+                        "title": "urban pollution implications"
+                    }
+                }
+            }
+        ]
+    }
+}

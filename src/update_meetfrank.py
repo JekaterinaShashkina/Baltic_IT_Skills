@@ -1,0 +1,108 @@
+
+import json
+from datetime import datetime, timezone
+from contextlib import closing
+
+try:
+    from .database import get_connection
+    from .load_meetfrank import save_observation, sync_job_skills
+except ImportError:
+    from database import get_connection
+    from load_meetfrank import save_observation, sync_job_skills
+
+
+def update_meetfrank(jobs, observed_at=None):
+    if observed_at is None:
+        observed_at = datetime.now(timezone.utc)
+
+    timestamp = observed_at.isoformat()
+    observed_date = observed_at.date().isoformat()
+
+    # Группируем вакансии по ID, поскольку одна вакансия
+    # может встречаться в нескольких странах.
+    grouped = {}
+
+    for job in jobs:
+        job_id = str(job["id"])
+        country = job["country"]
+        skills = set(job.get("skills") or [])
+
+        if job_id not in grouped:
+            grouped[job_id] = {
+                "job": job,
+                "skills": skills,
+                "countries": set()
+            }
+        elif grouped[job_id]["skills"] != skills:
+            raise ValueError(
+                f"Different skills for job {job_id} across countries"
+            )
+
+        if country in grouped[job_id]["countries"]:
+            raise ValueError(
+                f"Duplicate job-country pair: {job_id}, {country}"
+            )
+
+        grouped[job_id]["countries"].add(country)
+
+    # Все изменения внутри одной транзакции.
+    with closing(get_connection()) as conn:
+        with conn:
+            for job_id, item in grouped.items():
+                job = item["job"]
+                skills = item["skills"]
+
+                conn.execute("""
+                    INSERT INTO job (
+                        job_id, title, company, location,
+                        remote_type, speciality, seniorities,
+                        employment_type, published_at, apply_url,
+                        first_seen_at, last_seen_at
+                    )
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ON CONFLICT(job_id) DO UPDATE SET
+                        title = excluded.title,
+                        company = excluded.company,
+                        location = excluded.location,
+                        remote_type = excluded.remote_type,
+                        speciality = excluded.speciality,
+                        seniorities = excluded.seniorities,
+                        employment_type = excluded.employment_type,
+                        published_at = excluded.published_at,
+                        apply_url = excluded.apply_url,
+                        last_seen_at = excluded.last_seen_at
+                """, (
+                    job_id,
+                    job.get("title"),
+                    job.get("company"),
+                    job.get("location"),
+                    job.get("remote_type"),
+                    job.get("speciality"),
+                    json.dumps(job.get("seniorities"), ensure_ascii=False),
+                    job.get("employment_type"),
+                    job.get("published_at"),
+                    job.get("apply_url"),
+                    timestamp,
+                    timestamp
+                ))
+
+                sync_job_skills(conn, job_id, skills, timestamp)
+
+                for country in item["countries"]:
+                    conn.execute("""
+                        INSERT INTO job_countries (
+                            job_id, country, first_seen_at, last_seen_at
+                        )
+                        VALUES (?, ?, ?, ?)
+                        ON CONFLICT(job_id, country) DO UPDATE SET
+                            last_seen_at = excluded.last_seen_at
+                    """, (job_id, country, timestamp, timestamp))
+
+                    save_observation(
+                        conn, job_id, country, skills, observed_date
+                    )
+
+    print(
+        f"Updated {len(grouped)} unique jobs, "
+        f"{len(jobs)} country records for {observed_date}"
+    )
