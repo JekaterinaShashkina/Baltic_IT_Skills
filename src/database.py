@@ -1,4 +1,5 @@
 
+from datetime import datetime, timezone
 import sqlite3
 from pathlib import Path
 from contextlib import closing
@@ -73,8 +74,22 @@ def create_tables():
                         REFERENCES skill(skill_id)
                 )
             """)
+            # 5. pipeline run Хранит информацию о каждом запуске
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS pipeline_run (
+                    run_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    started_at TEXT NOT NULL,
+                    finished_at TEXT,
+                    status TEXT NOT NULL
+                        CHECK(status IN ('running', 'success', 'partial', 'failed')),
+                    new_jobs INTEGER DEFAULT 0,
+                    updated_jobs INTEGER DEFAULT 0,
+                    new_skills INTEGER DEFAULT 0,
+                    error_message TEXT
+                )
+            """)
 
-            # 5. История наблюдений
+            # 6. История наблюдений
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS job_observation (
                     job_obs_id INTEGER PRIMARY KEY,
@@ -89,11 +104,93 @@ def create_tables():
 
                     FOREIGN KEY (job_id, country)
                         REFERENCES job_countries(job_id, country)
+                    FOREIGN KEY (run_id)
+                        REFERENCES pipeline_run(run_id)
+                )
+            """)
+
+
+            # 7. pipeline_run_countries Хранит результаты каждого запуска отдельно по странам.
+
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS pipeline_run_countries (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    run_id INTEGER NOT NULL,
+                    country TEXT NOT NULL,
+                    status TEXT NOT NULL
+                        CHECK(status IN ('success', 'failed')),
+                    records_received INTEGER DEFAULT 0,
+                    error_message TEXT,
+
+                    FOREIGN KEY (run_id)
+                        REFERENCES pipeline_run(run_id),
+
+                    UNIQUE(run_id, country)
                 )
             """)
 
     print("Database tables created successfully.")
 
+def start_pipeline_run():
+    started_at = datetime.now(timezone.utc).isoformat()
+
+    with closing(get_connection()) as conn:
+        with conn:
+            cursor = conn.execute("""
+                INSERT INTO pipeline_run (started_at, status)
+                VALUES (?, ?)
+            """, (started_at, "running"))
+
+            run_id = cursor.lastrowid
+
+    return run_id
+
+def finish_pipeline_run(run_id, status, error_message=None):
+    finished_at = datetime.now(timezone.utc).isoformat()
+
+    with closing(get_connection()) as conn:
+        with conn:
+            conn.execute("""
+                UPDATE pipeline_run
+                SET finished_at = ?,
+                    status = ?,
+                    error_message = ?
+                WHERE run_id = ?
+            """, (finished_at, status, error_message, run_id))
+
+def save_country_run(run_id, country, status, records_received=0, error_message=None):
+    with closing(get_connection()) as conn:
+        with conn:
+            conn.execute("""
+                INSERT INTO pipeline_run_countries (
+                    run_id, country, status,
+                    records_received, error_message
+                )
+                VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(run_id, country) DO UPDATE SET
+                    status = excluded.status,
+                    records_received = excluded.records_received,
+                    error_message = excluded.error_message
+            """, (
+                run_id, country, status,
+                records_received, error_message
+            ))
+
+def save_pipeline_stats(run_id, stats):
+    with closing(get_connection()) as conn:
+        with conn:
+            conn.execute("""
+                UPDATE pipeline_run
+                SET new_jobs = ?,
+                    updated_jobs = ?,
+                    new_skills = ?
+                WHERE run_id = ?
+            """, (
+                stats["new_jobs"],
+                stats["updated_jobs"],
+                stats["new_skills"],
+                run_id
+            ))
 
 if __name__ == "__main__":
     create_tables()

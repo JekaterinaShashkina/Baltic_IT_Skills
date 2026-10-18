@@ -11,7 +11,7 @@ except ImportError:
     from load_meetfrank import save_observation, sync_job_skills
 
 
-def update_meetfrank(jobs, observed_at=None):
+def update_meetfrank(jobs, observed_at=None, run_id=None):
     if observed_at is None:
         observed_at = datetime.now(timezone.utc)
 
@@ -48,6 +48,29 @@ def update_meetfrank(jobs, observed_at=None):
     # Все изменения внутри одной транзакции.
     with closing(get_connection()) as conn:
         with conn:
+            existing_job_ids = {
+                row[0]
+                for row in conn.execute("SELECT job_id FROM job")
+            }
+
+            new_jobs = sum(
+                1 for job_id in grouped
+                if job_id not in existing_job_ids
+            )
+
+            updated_jobs = len(grouped) - new_jobs
+            existing_skills = {
+                row[0]
+                for row in conn.execute("SELECT name FROM skill")
+            }
+
+            incoming_skills = set()
+
+            for item in grouped.values():
+                incoming_skills.update(item["skills"])
+
+            new_skills = len(incoming_skills - existing_skills)
+
             for job_id, item in grouped.items():
                 job = item["job"]
                 skills = item["skills"]
@@ -99,10 +122,20 @@ def update_meetfrank(jobs, observed_at=None):
                     """, (job_id, country, timestamp, timestamp))
 
                     save_observation(
-                        conn, job_id, country, skills, observed_date
+                        conn, job_id, country, skills, observed_date, run_id=run_id
                     )
 
     print(
         f"Updated {len(grouped)} unique jobs, "
         f"{len(jobs)} country records for {observed_date}"
+        
     )
+    print(f"New jobs: {new_jobs}")
+    print(f"Updated jobs: {updated_jobs}")
+    print(f"New skills: {new_skills}")
+
+    return {
+    "new_jobs": new_jobs,
+    "updated_jobs": updated_jobs,
+    "new_skills": new_skills
+}

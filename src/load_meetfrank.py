@@ -13,7 +13,7 @@ except ImportError:
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_FILE = BASE_DIR / "data" / "processed" / "meetfrank_baltic_jobs.json"
 
-def save_observation(conn, job_id, country, skills, observed_date):
+def save_observation(conn, job_id, country, skills, observed_date, run_id=None):
     # Сортируем навыки, чтобы порядок не влиял на результат
     sorted_skills = sorted(set(skills))
 
@@ -29,20 +29,22 @@ def save_observation(conn, job_id, country, skills, observed_date):
     conn.execute("""
         INSERT INTO job_observation (
             job_id, country, observed_date,
-            skill_hash, skills_snapshot
+            skill_hash, skills_snapshot, run_id
         )
-        VALUES (?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?)
 
         ON CONFLICT(job_id, country, observed_date)
         DO UPDATE SET
             skill_hash = excluded.skill_hash,
-            skills_snapshot = excluded.skills_snapshot
+            skills_snapshot = excluded.skills_snapshot,
+            run_id = excluded.run_id
     """, (
         job_id,
         country,
         observed_date,
         skills_hash,
-        skills_json
+        skills_json,
+        run_id
     ))
 
 def sync_job_skills(conn, job_id, skills, imported_at):

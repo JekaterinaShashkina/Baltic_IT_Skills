@@ -39,6 +39,7 @@ CREATE TABLE job_observation (
     job_id TEXT NOT NULL,
     country TEXT NOT NULL,
     observed_date TEXT NOT NULL,
+    run_id INTEGER,
     skill_hash TEXT,
     skills_snapshot TEXT,
     UNIQUE (job_id, country, observed_date),
