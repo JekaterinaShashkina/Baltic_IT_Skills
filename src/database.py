@@ -129,6 +129,49 @@ def create_tables():
                 )
             """)
 
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS esco_skill (
+                    esco_uri TEXT PRIMARY KEY,
+                    title TEXT NOT NULL,
+                    version TEXT,
+                    fetched_at TEXT
+                );
+            """)
+
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS occupation (
+                    occupation_uri TEXT PRIMARY KEY,
+                    title TEXT NOT NULL,
+                    isco_code TEXT,
+                    ict_category TEXT,
+                    fetched_at TEXT
+                );
+            """)
+
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS skill_mapping (
+                    skill_id INTEGER PRIMARY KEY,
+                    esco_uri TEXT,
+                    status TEXT NOT NULL
+                        CHECK (status IN ('exact', 'broader', 'review')),
+                    mapping_method TEXT,
+                    reviewed_at TEXT,
+                    FOREIGN KEY (skill_id) REFERENCES skill(skill_id),
+                    FOREIGN KEY (esco_uri) REFERENCES esco_skill(esco_uri)
+                );
+            """)
+
+            conn.execute("""
+                    CREATE TABLE IF NOT EXISTS esco_skill_occupation (
+                    esco_uri TEXT NOT NULL,
+                    occupation_uri TEXT NOT NULL,
+                    relation_type TEXT,
+                    PRIMARY KEY (esco_uri, occupation_uri),
+                    FOREIGN KEY (esco_uri) REFERENCES esco_skill(esco_uri),
+                    FOREIGN KEY (occupation_uri) REFERENCES occupation(occupation_uri)
+                );
+            """)
+
     print("Database tables created successfully.")
 
 def start_pipeline_run():
