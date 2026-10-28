@@ -171,6 +171,18 @@ def create_tables():
                     FOREIGN KEY (occupation_uri) REFERENCES occupation(occupation_uri)
                 );
             """)
+            # Учёт проверок навыков MeetFrank через ESCO
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS esco_check (
+                    skill_id INTEGER PRIMARY KEY,
+                    status TEXT NOT NULL
+                        CHECK(status IN ('exact', 'no_match')),
+                    checked_at TEXT NOT NULL,
+                    esco_version TEXT NOT NULL,
+                    FOREIGN KEY (skill_id)
+                        REFERENCES skill(skill_id)
+                )
+            """)
 
     print("Database tables created successfully.")
 

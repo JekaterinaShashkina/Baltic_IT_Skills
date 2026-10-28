@@ -32,16 +32,43 @@ def search_esco_skill(skill_name):
     return response.json()
 
 
+def get_esco_skill_details(esco_uri):
+    url = "https://ec.europa.eu/esco/api/resource/skill"
+
+    params = {
+        "uri": esco_uri,
+        "language": "en",
+        "selectedVersion": "v1.2.0"
+    }
+
+    response = requests.get(url, params=params, timeout=30)
+    response.raise_for_status()
+
+    content_type = response.headers.get("Content-Type", "")
+
+    if "application/json" not in content_type.lower():
+        raise ValueError(
+            f"ESCO API returned unexpected content: "
+            f"HTTP {response.status_code}, "
+            f"Content-Type: {content_type}"
+        )
+
+    return response.json()
+
+
+
+
 if __name__ == "__main__":
-    data = search_esco_skill("Python")
+    uri = "http://data.europa.eu/esco/skill/21d2f96d-35f7-4e3f-9745-c533d2dd6e97"
 
-    results = data.get("_embedded", {}).get("results", [])
+    details = get_esco_skill_details(uri)
 
-    print(f"Found {len(results)} results:\n")
+    print("Preferred label:")
+    print(details.get("preferredLabel", {}).get("en"))
 
-    for result in results:
-        print("Title:", result.get("title"))
-        print("URI:", result.get("uri"))
-        print("Search hit:", result.get("searchHit"))
-        print("Skill type:", result.get("hasSkillType"))
-        print("-" * 50)
+    print("\nAlternative labels:")
+    print(details.get("alternativeLabel", {}).get("en", []))
+
+    print("\nDescription:")
+    print(details.get("description", {}).get("en"))
+
