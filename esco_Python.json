@@ -1,0 +1,147 @@
+{
+    "total": 2,
+    "offset": 0,
+    "limit": 10,
+    "text": "Python",
+    "language": "en",
+    "type": [
+        "skill"
+    ],
+    "isInScheme": null,
+    "facet": null,
+    "_links": {
+        "self": {
+            "href": "https://ec.europa.eu/esco/api/search?text=Python&type=skill&limit=10&offset=0&full=false&viewObsolete=false&language=en"
+        }
+    },
+    "_embedded": {
+        "results": [
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/ccd0a1d9-afda-43d9-b901-96344886e14d",
+                "searchHit": "Python 3K",
+                "title": "Python (computer programming)",
+                "preferredLabel": {
+                    "de": "Python (Computerprogrammierung)",
+                    "no": "Python (dataprogrammering)",
+                    "fi": "Python (tietokoneohjelmointi)",
+                    "pt": "Python (programação informática)",
+                    "bg": "Python (компютърно програмиране)",
+                    "lt": "„Python“ (kompiuterinis programavimas)",
+                    "hr": "Python (računalno programiranje)",
+                    "lv": "Python (datorprogrammēšana)",
+                    "fr": "Python (programmation informatique)",
+                    "hu": "Python (számítógépes programozás)",
+                    "uk": "Python (комп’ютерне програмування)",
+                    "sk": "Python (počítačové programovanie)",
+                    "sl": "Python (računalniško programiranje)",
+                    "ga": "Python (ríomhchlárú)",
+                    "sv": "Python (datorprogrammering)",
+                    "el": "Python (προγραμματισμός ηλεκτρονικών υπολογιστών)",
+                    "mt": "Python (programmar tal-kompjuter)",
+                    "en": "Python (computer programming)",
+                    "is": "Python (tölvuforritun)",
+                    "it": "Python (programmazione informatica)",
+                    "es": "Python (programación informática)",
+                    "et": "Python (arvutiprogrammeerimine)",
+                    "cs": "Python (počítačové programování)",
+                    "ar": "Python",
+                    "pl": "Python (programowanie komputerowe)",
+                    "da": "Python (computerprogrammering)",
+                    "ro": "Python (programare pe calculator)",
+                    "nl": "Python (computerprogrammering)"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/6c930acd-c104-4ece-acf7-f44fd7333036"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills",
+                    "http://data.europa.eu/esco/concept-scheme/6c930acd-c104-4ece-acf7-f44fd7333036"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/knowledge"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderSkill": [
+                    "http://data.europa.eu/esco/skill/21d2f96d-35f7-4e3f-9745-c533d2dd6e97"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/isced-f/0613"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/ccd0a1d9-afda-43d9-b901-96344886e14d&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/ccd0a1d9-afda-43d9-b901-96344886e14d",
+                        "title": "Python (computer programming)"
+                    }
+                }
+            },
+            {
+                "className": "Skill",
+                "classId": "http://data.europa.eu/esco/model#Skill",
+                "uri": "http://data.europa.eu/esco/skill/5ef0c719-5bcb-49f8-b8eb-824388225333",
+                "searchHit": "Utilise specialised ICT tools to create computer code that is interpreted by the corresponding run-time environments in order to extend applications and automate common computer operations. Use programming languages which support this method such as Unix Shell scripts, JavaScript, Python and Ruby.",
+                "title": "use scripting programming",
+                "preferredLabel": {
+                    "de": "Skriptprogrammierung verwenden",
+                    "no": "bruke skriptingsprogrammering",
+                    "fi": "käyttää komentokielistä ohjelmointia",
+                    "pt": "utilizar programação de «script»",
+                    "bg": "използване на скриптово програмиране",
+                    "lt": "naudoti skriptų programavimą",
+                    "hr": "primjenjivati skriptirano programiranje",
+                    "lv": "lietot skriptu programmēšanu",
+                    "fr": "utiliser la programmation de scripts",
+                    "hu": "script programozást alkalmaz",
+                    "uk": "використовувати скриптову мову програмування",
+                    "sk": "použiť programovanie v skriptovacích jazykoch",
+                    "sl": "uporabljati skriptno programiranje",
+                    "ga": "ríomhchlárú scriptithe a úsáid",
+                    "sv": "använda skriptprogrammering",
+                    "el": "χρήση scripting γλώσσα προγραμματισμού",
+                    "mt": "tuża programmar bi skript",
+                    "en": "use scripting programming",
+                    "is": "nota forskrift við forritun",
+                    "it": "usare la programmazione script",
+                    "es": "utilizar programación con scripts",
+                    "et": "skript-programmeerimist kasutama",
+                    "cs": "využívat skriptování",
+                    "ar": "استخدام برامج البرمجة النصية",
+                    "pl": "stosować programowanie w językach skryptowych",
+                    "da": "bruge scriptprogrammering",
+                    "ro": "utilizează programare pe bază de scripturi",
+                    "nl": "programmeren in scripttaal"
+                },
+                "isTopConceptInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/member-skills",
+                    "http://data.europa.eu/esco/concept-scheme/6c930acd-c104-4ece-acf7-f44fd7333036"
+                ],
+                "isInScheme": [
+                    "http://data.europa.eu/esco/concept-scheme/skills",
+                    "http://data.europa.eu/esco/concept-scheme/member-skills",
+                    "http://data.europa.eu/esco/concept-scheme/6c930acd-c104-4ece-acf7-f44fd7333036"
+                ],
+                "hasSkillType": [
+                    "http://data.europa.eu/esco/skill-type/skill"
+                ],
+                "hasReuseLevel": [
+                    "http://data.europa.eu/esco/skill-reuse-level/sector-specific"
+                ],
+                "broaderHierarchyConcept": [
+                    "http://data.europa.eu/esco/skill/a8c3186b-c791-4d57-8f4f-4d12c7a5c6a7"
+                ],
+                "_links": {
+                    "self": {
+                        "href": "https://ec.europa.eu/esco/api/resource/skill?uri=http://data.europa.eu/esco/skill/5ef0c719-5bcb-49f8-b8eb-824388225333&language=en",
+                        "uri": "http://data.europa.eu/esco/skill/5ef0c719-5bcb-49f8-b8eb-824388225333",
+                        "title": "use scripting programming"
+                    }
+                }
+            }
+        ]
+    }
+}

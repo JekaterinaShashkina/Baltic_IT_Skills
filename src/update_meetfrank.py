@@ -3,12 +3,9 @@ import json
 from datetime import datetime, timezone
 from contextlib import closing
 
-try:
-    from .database import get_connection
-    from .load_meetfrank import save_observation, sync_job_skills
-except ImportError:
-    from database import get_connection
-    from load_meetfrank import save_observation, sync_job_skills
+from .database import get_connection
+from .observations import save_observation
+from .job_skills import sync_job_skills
 
 
 def update_meetfrank(jobs, observed_at=None, run_id=None):
