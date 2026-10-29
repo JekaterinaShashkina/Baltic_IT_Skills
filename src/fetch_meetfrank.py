@@ -1,6 +1,11 @@
 import requests
 
-API_URL = "https://api.meetfrank.com/ai/jobs"
+from .config import (
+    MEETFRANK_API_URL,
+    MEETFRANK_SPECIALITY,
+    MEETFRANK_PAGE_SIZE,
+    REQUEST_TIMEOUT,
+)
 
 def fetch_jobs(country):
     all_jobs = []
@@ -11,11 +16,11 @@ def fetch_jobs(country):
     while True:
         params = {
             "country": country,
-            "speciality": "software engineering",
-            "pageSize": 100,
+            "speciality": MEETFRANK_SPECIALITY,
+            "pageSize": MEETFRANK_PAGE_SIZE,
             "page": page
         }
-        response = requests.get(API_URL, params=params, timeout=30)
+        response = requests.get(MEETFRANK_API_URL, params=params, timeout=REQUEST_TIMEOUT)
 
         response.raise_for_status()
 

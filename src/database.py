@@ -4,9 +4,7 @@ import sqlite3
 from pathlib import Path
 from contextlib import closing
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DB_PATH = BASE_DIR / "data" / "baltic_it_skills.db"
-
+from .config import DB_PATH
 
 def get_connection():
     connection = sqlite3.connect(DB_PATH)

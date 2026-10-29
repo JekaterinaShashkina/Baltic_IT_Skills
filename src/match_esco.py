@@ -3,8 +3,8 @@ from contextlib import closing
 import sqlite3
 import time
 
-from src.database import DB_PATH
-from src.fetch_esco import search_esco_skill, get_esco_skill_details
+from .config import DB_PATH, ESCO_VERSION
+from .fetch_esco import search_esco_skill, get_esco_skill_details
 from datetime import datetime, timezone
 
 
@@ -73,7 +73,7 @@ def save_esco_mapping(skill_name, esco_title, esco_uri, mapping_method="manual")
                     (esco_uri, title, version, fetched_at)
                 VALUES (?, ?, ?, ?)
                 """,
-                (esco_uri, esco_title, "v1.2.0", now)
+                (esco_uri, esco_title, ESCO_VERSION, now)
             )
 
             conn.execute(
@@ -146,7 +146,7 @@ def save_esco_check(skill_name, status):
             """, (
                 status,
                 now,
-                "v1.2.0",
+                ESCO_VERSION,
                 skill_name
             ))
 

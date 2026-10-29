@@ -1,8 +1,7 @@
 from .database import create_tables, finish_pipeline_run, save_country_run, save_pipeline_stats, start_pipeline_run
 from .fetch_meetfrank import fetch_all_jobs, fetch_jobs, normalize_job
 from .update_meetfrank import update_meetfrank
-
-COUNTRIES = ["estonia", "latvia", "lithuania"]
+from .config import COUNTRIES
 
 def run_pipeline():
     create_tables()
