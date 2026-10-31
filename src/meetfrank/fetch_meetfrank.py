@@ -1,18 +1,24 @@
 import requests
 
+from ..logger import get_logger
 from ..config import (
+    COUNTRIES,
     MEETFRANK_API_URL,
     MEETFRANK_SPECIALITY,
     MEETFRANK_PAGE_SIZE,
     REQUEST_TIMEOUT,
 )
 
+logger = get_logger(__name__)
+
+
 def fetch_jobs(country):
     all_jobs = []
     page = 1
     seen_ids = set()
 
-    # Цикл получения страниц
+    logger.info("Fetching MeetFrank jobs for %s", country)
+    # Fetch all available pages of job postings
     while True:
         params = {
             "country": country,
@@ -26,7 +32,14 @@ def fetch_jobs(country):
 
         data = response.json()
 
-        # Проверяем количество полученных вакансий
+        logger.debug(
+            "%s: page %s received, %s jobs",
+            country,
+            page,
+            len(data["jobs"]),
+        )
+
+        # Validate the number of retrieved jobs
         if page == 1:
             expected_total = data["total"]
 
@@ -34,7 +47,7 @@ def fetch_jobs(country):
             raise ValueError(
                 f"{country}: expected page {page}, got {data['page']}"
             )
-        # обнаружение повторяющихся вакансий в пределах одной страны
+        # Detect duplicate job IDs within the same country
         for job in data["jobs"]:
             job_id = job["id"]
 
@@ -50,13 +63,20 @@ def fetch_jobs(country):
             break
         page += 1
 
-    # Проверяем полноту загрузки после завершения цикла
+    # Verify that all expected jobs were retrieved
     if len(all_jobs) != expected_total:
         raise ValueError(
             f"{country}: incomplete download. "
             f"Expected {expected_total}, received {len(all_jobs)}"
         )
+    logger.info(
+        "%s: download completed. Jobs %s, pages fetched: %s",
+        country,
+        len(all_jobs),
+        page,
+    )
     return all_jobs
+
 
 def normalize_job(raw_job, country):
     remote = raw_job.get("remote") or {}
@@ -76,10 +96,11 @@ def normalize_job(raw_job, country):
         "apply_url": raw_job.get("applyUrl")
     }
 
+
 def fetch_all_jobs():
     all_jobs = []
 
-    for country in ["estonia", "latvia", "lithuania"]:
+    for country in COUNTRIES:
         jobs = fetch_jobs(country)
 
         for job in jobs:
@@ -90,7 +111,13 @@ def fetch_all_jobs():
 
 
 if __name__ == "__main__":
+    from ..logger import setup_logging
+
+    setup_logging()
     jobs = fetch_all_jobs()
 
-    print("Total country records:", len(jobs))
-    print("Unique job IDs:", len(set(job["id"] for job in jobs)))
+    logger.info("Total country records: %s", len(jobs))
+    logger.info(
+        "Unique job IDs: %s",
+        len({job["id"] for job in jobs}),
+    )

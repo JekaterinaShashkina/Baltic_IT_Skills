@@ -1,19 +1,28 @@
 from ..database import create_tables, finish_pipeline_run, save_country_run, save_pipeline_stats, start_pipeline_run
-from ..meetfrank.fetch_meetfrank import fetch_all_jobs, fetch_jobs, normalize_job
+from ..meetfrank.fetch_meetfrank import fetch_jobs, normalize_job
 from ..meetfrank.update_meetfrank import update_meetfrank
 from ..config import COUNTRIES
 from ..esco.match_esco import check_esco_matches
+from ..logger import get_logger, setup_logging
+
+logger = get_logger(__name__)
 
 def run_pipeline():
-    create_tables()
-    run_id = start_pipeline_run()
+    setup_logging()
+    logger.info("ETL pipeline started")
+
+    try:
+        create_tables()
+        run_id = start_pipeline_run()
+    except Exception:
+        logger.exception("Failed to initialize ETL pipeline")
+        raise
 
     try:
         all_jobs = []
         for country in COUNTRIES:
             try:
                 jobs = fetch_jobs(country)
-
 
                 if not jobs:
                     raise ValueError(f"No jobs returned for {country}")
@@ -26,7 +35,7 @@ def run_pipeline():
                 save_country_run(
                     run_id, country, "success", len(jobs)
                 )
-                print(f"{country}: {len(jobs)} jobs received")
+                logger.info("%s: %s jobs received", country, len(jobs))
             except Exception as error:
                 save_country_run(
                     run_id, country, "failed", error_message=str(error)
@@ -37,18 +46,20 @@ def run_pipeline():
         save_pipeline_stats(run_id, stats)
 
     except Exception as error:
+        logger.exception("ETL pipeline failed. Run ID: %s", run_id)
         finish_pipeline_run(run_id, "failed", str(error))
         raise
     else:
         finish_pipeline_run(run_id,  "success")
-        print(f"ETL pipeline completed successfully! Run ID: {run_id}")
+        logger.info("MeetFrank pipeline completed successfully. Run ID: %s", run_id)
 
     # Run ESCO matching after the MeetFrank pipeline completes
+    logger.info("ESCO matching started")
     try:
         esco_stats = check_esco_matches(limit=20)
-        print(f"ESCO matching statistics: {esco_stats}")
-    except Exception as error:
-        print(f"ESCO matching stage failed: {error}")
+        logger.info("ESCO matching completed. Statistics: %s", esco_stats)
+    except Exception:
+        logger.exception("ESCO matching stage failed")
 
 
 if __name__ == "__main__":

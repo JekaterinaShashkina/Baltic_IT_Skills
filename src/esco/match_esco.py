@@ -2,10 +2,14 @@
 from contextlib import closing
 import sqlite3
 import time
+from datetime import datetime, timezone
 
 from ..config import DB_PATH, ESCO_VERSION
+from ..logger import get_logger
 from .fetch_esco import search_esco_skill, get_esco_skill_details
-from datetime import datetime, timezone
+
+
+logger = get_logger(__name__)
 
 
 def get_skills(limit=5):
@@ -30,7 +34,7 @@ def get_skills(limit=5):
     return [row[0] for row in rows]
 
 def classify_match(skill_name, esco_title, alternative_labels=None):
-    """Проверяет совпадение названий навыков MeetFrank и ESCO."""
+    """Classify the match between MeetFrank and ESCO skill names."""
 
     meetfrank_name = skill_name.strip().casefold()
     esco_name = esco_title.strip().casefold()
@@ -42,7 +46,7 @@ def classify_match(skill_name, esco_title, alternative_labels=None):
         for label in alternative_labels:
             if meetfrank_name == label.strip().casefold():
 
-                # Не считаем совпадение с широким понятием точным
+                # Do not classify a broad concept as an exact match.
                 if esco_name == "computer programming":
                     return "review"
 
@@ -51,7 +55,7 @@ def classify_match(skill_name, esco_title, alternative_labels=None):
     return "review"
 
 def save_esco_mapping(skill_name, esco_title, esco_uri, mapping_method="manual"):
-    """Сохраняет проверенное соответствие MeetFrank и ESCO."""
+    """Save a confirmed mapping between a MeetFrank skill and ESCO."""
 
     now = datetime.now(timezone.utc).isoformat()
 
@@ -126,7 +130,7 @@ def get_skill_statistics():
     return total, mapped
 
 def save_esco_check(skill_name, status):
-    """Сохраняет результат проверки навыка через ESCO."""
+    """Save the result of an ESCO skill check."""
 
     now = datetime.now(timezone.utc).isoformat()
 
@@ -163,8 +167,13 @@ def check_esco_matches(limit=20):
         "failed": 0
     }
 
+    logger.info(
+        "ESCO matching started. Skills to check: %s",
+        len(skills),
+    )
+
     for skill_name in skills:
-        print(f"\nChecking ESCO skill: {skill_name}")
+        logger.info("Checking ESCO skill: %s", skill_name)
 
         try:
             data = search_esco_skill(skill_name)
@@ -182,31 +191,50 @@ def check_esco_matches(limit=20):
 
                 save_esco_check(skill_name, "exact")
                 stats["matched"] += 1
-                print(f"  Exact match: {match['title']}")
+                logger.info(
+                    "Exact ESCO match: %s -> %s",
+                    skill_name,
+                    match["title"],
+                )
             else:
                 save_esco_check(skill_name, "no_match")
                 stats["no_match"] += 1
-                print("  No exact match found")
+                logger.info(
+                    "No exact ESCO match found for: %s",
+                    skill_name,
+                )
 
             stats["checked"] += 1
 
-        except Exception as error:
+        except Exception:
             stats["failed"] += 1
-            print(f"  ESCO processing failed: {error}")
+            logger.exception(
+                "ESCO processing failed for skill: %s",
+                skill_name,
+            )
 
         time.sleep(1)
+    logger.info(
+        "ESCO matching batch completed. Checked: %s, matched: %s, "
+        "no match: %s, failed: %s",
+        stats["checked"],
+        stats["matched"],
+        stats["no_match"],
+        stats["failed"],
+    )
 
     return stats
 
 
-
 if __name__ == "__main__":
+    from ..logger import setup_logging
+
+    setup_logging()
     check_esco_matches()
 
     total, mapped = get_skill_statistics()
 
-    print("\n=== ESCO MATCHING BATCH COMPLETED ===")
-    print(f"Total MeetFrank skills: {total}")
-    print(f"Exact ESCO mappings: {mapped}")
-    print(f"Skills without exact mapping: {total - mapped}")
+    logger.info("Total MeetFrank skills: %s", total)
+    logger.info("Exact ESCO mappings: %s", mapped)
+    logger.info("Skills without exact mapping: %s", total - mapped)
 

@@ -8,9 +8,13 @@ from ..config import (
     ESCO_SEARCH_LIMIT,
     REQUEST_TIMEOUT,
 )
+from ..logger import get_logger
+
+logger = get_logger(__name__)
 
 
 def search_esco_skill(skill_name):
+    logger.debug("Searching ESCO for skill: %s", skill_name)
     params = {
         "text": skill_name,
         "language": ESCO_LANGUAGE,
@@ -35,12 +39,15 @@ def search_esco_skill(skill_name):
             f"HTTP {response.status_code}, "
             f"Content-Type: {content_type}"
         )
-
+    
+    logger.debug(
+        "ESCO search response received for skill: %s",
+        skill_name,
+    )
     return response.json()
 
 
 def get_esco_skill_details(esco_uri):
-    url = ESCO_API_URL
 
     params = {
         "uri": esco_uri,
@@ -48,7 +55,13 @@ def get_esco_skill_details(esco_uri):
         "selectedVersion": ESCO_VERSION
     }
 
-    response = requests.get(url, params=params, timeout=REQUEST_TIMEOUT)
+    logger.debug("Fetching ESCO skill details: %s", esco_uri)
+
+    response = requests.get(
+        ESCO_SKILL_URL, 
+        params=params, 
+        timeout=REQUEST_TIMEOUT)
+    
     response.raise_for_status()
 
     content_type = response.headers.get("Content-Type", "")
@@ -59,6 +72,8 @@ def get_esco_skill_details(esco_uri):
             f"HTTP {response.status_code}, "
             f"Content-Type: {content_type}"
         )
+    
+    logger.debug("ESCO skill details received: %s", esco_uri)
 
     return response.json()
 
