@@ -151,13 +151,20 @@ def save_esco_check(skill_name, status):
             ))
 
 
-def check_esco_matches():
-    """Ищет соответствия навыков в ESCO."""
+def check_esco_matches(limit=20):
+    """Match new MeetFrank skills against ESCO."""
 
-    skills = get_skills(limit=20)
+    skills = get_skills(limit=limit)
+
+    stats = {
+        "checked": 0,
+        "matched": 0,
+        "no_match": 0,
+        "failed": 0
+    }
 
     for skill_name in skills:
-        print(f"\nMeetFrank skill: {skill_name}")
+        print(f"\nChecking ESCO skill: {skill_name}")
 
         try:
             data = search_esco_skill(skill_name)
@@ -166,9 +173,6 @@ def check_esco_matches():
             match = find_exact_match(skill_name, results)
 
             if match:
-                print("  Exact ESCO match:", match["title"])
-                print("  ESCO URI:", match["uri"])
-
                 save_esco_mapping(
                     skill_name,
                     match["title"],
@@ -177,30 +181,31 @@ def check_esco_matches():
                 )
 
                 save_esco_check(skill_name, "exact")
-
-                print("  Mapping saved to SQLite")
+                stats["matched"] += 1
+                print(f"  Exact match: {match['title']}")
             else:
                 save_esco_check(skill_name, "no_match")
+                stats["no_match"] += 1
+                print("  No exact match found")
 
-                print("  No exact ESCO match")
+            stats["checked"] += 1
+
         except Exception as error:
-            print(f"  ESCO request failed: {error}")
+            stats["failed"] += 1
+            print(f"  ESCO processing failed: {error}")
 
         time.sleep(1)
 
+    return stats
+
+
 
 if __name__ == "__main__":
-    while True:
-        remaining_skills = get_skills(limit=20)
-
-        if not remaining_skills:
-            break
-
-        check_esco_matches()
+    check_esco_matches()
 
     total, mapped = get_skill_statistics()
 
-    print("\n=== ESCO MATCHING COMPLETED ===")
+    print("\n=== ESCO MATCHING BATCH COMPLETED ===")
     print(f"Total MeetFrank skills: {total}")
     print(f"Exact ESCO mappings: {mapped}")
     print(f"Skills without exact mapping: {total - mapped}")
