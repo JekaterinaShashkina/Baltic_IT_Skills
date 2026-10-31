@@ -10,10 +10,7 @@ __pycache__/
 venv/
 env/
 
-# Environment variables and secrets
-.env
-.env.*
-!.env.example
+
 
 # SQLite databases
 *.db
@@ -24,10 +21,10 @@ env/
 *.sqlite3
 
 # Downloaded and processed data
-data/raw/*
-data/processed/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
+/data/raw/
+/data/processed/
+!/data/raw/.gitkeep
+!/data/processed/.gitkeep
 
 # Logs and temporary files
 *.log
@@ -43,6 +40,7 @@ data/processed/*
 .DS_Store
 Thumbs.db
 
+# Environment variables and secrets
 # Node.js
 node_modules/
 .env

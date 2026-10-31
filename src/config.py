@@ -18,6 +18,7 @@ ESCO_SKILL_URL = "https://ec.europa.eu/esco/api/resource/skill"
 ESCO_VERSION = "v1.2.0"
 ESCO_LANGUAGE = "en"
 ESCO_SEARCH_LIMIT = 10
+ESCO_OCCUPATION_URL = "https://ec.europa.eu/esco/api/resource/occupation"
 
 # HTTP
 REQUEST_TIMEOUT = 30
