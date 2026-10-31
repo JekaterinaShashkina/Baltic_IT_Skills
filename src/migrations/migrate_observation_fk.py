@@ -1,7 +1,7 @@
 
 from contextlib import closing
 
-from .database import get_connection
+from ..database import get_connection
 
 
 def migrate_observation_fk():

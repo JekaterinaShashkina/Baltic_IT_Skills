@@ -1,6 +1,6 @@
 import requests
 
-from .config import (
+from ..config import (
     MEETFRANK_API_URL,
     MEETFRANK_SPECIALITY,
     MEETFRANK_PAGE_SIZE,

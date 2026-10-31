@@ -5,7 +5,7 @@ import tempfile
 from pathlib import Path
 from contextlib import closing
 
-from src.match_esco import classify_match, find_exact_match, save_esco_mapping, save_esco_check
+from src.esco.match_esco import classify_match, find_exact_match, save_esco_mapping, save_esco_check
 from unittest.mock import patch
 
 class TestEscoMatching(unittest.TestCase):
@@ -79,7 +79,7 @@ class TestEscoMatching(unittest.TestCase):
         )
         assert status == "review"
 
-    @patch("src.match_esco.get_esco_skill_details")
+    @patch("src.esco.match_esco.get_esco_skill_details")
     def test_find_exact_match(self, mock_details):
         results = [
             {"uri": "esco:test-1"},
@@ -103,7 +103,7 @@ class TestEscoMatching(unittest.TestCase):
         self.assertEqual(result["status"], "exact")
         self.assertEqual(mock_details.call_count, 2)
 
-    @patch("src.match_esco.get_esco_skill_details")
+    @patch("src.esco.match_esco.get_esco_skill_details")
     def test_find_exact_match_not_found(self, mock_details):
         results = [
             {"uri": "esco:test-1"},
@@ -160,7 +160,7 @@ class TestEscoMatching(unittest.TestCase):
                     VALUES (1, 'esco:original', 'exact', 'manual');
                 """)
 
-            with patch("src.match_esco.DB_PATH", test_db):
+            with patch("src.esco.match_esco.DB_PATH", test_db):
                 save_esco_mapping(
                     "Python",
                     "Another Python",
@@ -210,7 +210,7 @@ class TestEscoMatching(unittest.TestCase):
                         INSERT INTO skill VALUES (1, 'JavaScript');
                     """)
 
-            with patch("src.match_esco.DB_PATH", test_db):
+            with patch("src.esco.match_esco.DB_PATH", test_db):
                 save_esco_mapping(
                     "JavaScript",
                     "JavaScript",
@@ -252,7 +252,7 @@ class TestEscoMatching(unittest.TestCase):
                         INSERT INTO skill VALUES (1, 'Node.js');
                     """)
 
-            with patch("src.match_esco.DB_PATH", test_db):
+            with patch("src.esco.match_esco.DB_PATH", test_db):
                 save_esco_check("Node.js", "no_match")
 
             with closing(sqlite3.connect(test_db)) as conn:

@@ -1,5 +1,5 @@
 
-from src import match_esco
+from src.esco import match_esco
 
 
 def test_esco_exact_match(monkeypatch):

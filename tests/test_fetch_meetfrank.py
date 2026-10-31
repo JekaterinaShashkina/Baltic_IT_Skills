@@ -1,7 +1,7 @@
 
 from unittest.mock import patch, Mock
 
-from src.fetch_meetfrank import fetch_jobs
+from src.meetfrank.fetch_meetfrank import fetch_jobs
 
 
 def test_incomplete_download():
@@ -16,7 +16,7 @@ def test_incomplete_download():
 
     fake_response.raise_for_status.return_value = None
 
-    with patch("src.fetch_meetfrank.requests.get",
+    with patch("src.meetfrank.fetch_meetfrank.requests.get",
             return_value=fake_response):
         try:
             fetch_jobs("estonia")
@@ -49,7 +49,7 @@ def test_duplicate_jobs():
     }
 
     with patch(
-        "src.fetch_meetfrank.requests.get",
+        "src.meetfrank.fetch_meetfrank.requests.get",
         side_effect=[first_response, second_response]
     ):
         try:
@@ -83,7 +83,7 @@ def test_successful_pagination():
     }
 
     with patch(
-        "src.fetch_meetfrank.requests.get",
+        "src.meetfrank.fetch_meetfrank.requests.get",
         side_effect=[first_response, second_response]
     ) as mock_get:
         jobs = fetch_jobs("estonia")

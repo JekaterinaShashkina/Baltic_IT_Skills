@@ -3,7 +3,7 @@ import json
 from datetime import datetime, timezone
 from contextlib import closing
 
-from .database import get_connection
+from ..database import get_connection
 from .observations import save_observation
 from .job_skills import sync_job_skills
 

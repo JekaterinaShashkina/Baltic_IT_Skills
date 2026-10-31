@@ -1,6 +1,6 @@
 import requests
 
-from .config import (
+from ..config import (
     ESCO_API_URL,
     ESCO_SKILL_URL,
     ESCO_VERSION,

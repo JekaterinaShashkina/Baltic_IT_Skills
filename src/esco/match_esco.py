@@ -3,7 +3,7 @@ from contextlib import closing
 import sqlite3
 import time
 
-from .config import DB_PATH, ESCO_VERSION
+from ..config import DB_PATH, ESCO_VERSION
 from .fetch_esco import search_esco_skill, get_esco_skill_details
 from datetime import datetime, timezone
 
