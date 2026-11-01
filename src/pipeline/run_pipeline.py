@@ -4,6 +4,8 @@ from ..meetfrank.update_meetfrank import update_meetfrank
 from ..config import COUNTRIES
 from ..esco.match_esco import check_esco_matches
 from ..logger import get_logger, setup_logging
+from ..esco.fetch_occupations import fetch_occupations
+from ..esco.filter_it_occupations import filter_it_occupations
 
 logger = get_logger(__name__)
 
@@ -60,6 +62,29 @@ def run_pipeline():
         logger.info("ESCO matching completed. Statistics: %s", esco_stats)
     except Exception:
         logger.exception("ESCO matching stage failed")
+
+    
+    # Fetch occupations for mapped ESCO skills
+    logger.info("ESCO occupation fetching started")
+    try:
+        occupation_stats = fetch_occupations(limit=20)
+        logger.info(
+            "ESCO occupation fetching completed. Statistics: %s",
+            occupation_stats,
+        )
+    except Exception:
+        logger.exception("ESCO occupation fetching stage failed")
+
+    # Classify occupations as ICT or non-ICT
+    logger.info("ESCO occupation classification started")
+    try:
+        classification_stats = filter_it_occupations(limit=50)
+        logger.info(
+            "ESCO occupation classification completed. Statistics: %s",
+            classification_stats,
+        )
+    except Exception:
+        logger.exception("ESCO occupation classification stage failed")
 
 
 if __name__ == "__main__":

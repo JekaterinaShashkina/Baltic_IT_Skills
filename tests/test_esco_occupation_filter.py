@@ -57,6 +57,7 @@ def test_ict_classification(code, expected):
         "2512.1.abc",
     ],
 )
+
 def test_invalid_occupation_codes(code):
     """Reject malformed occupation codes."""
 
