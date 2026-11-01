@@ -1,17 +1,20 @@
-import json
 import time
-from pathlib import Path
+from contextlib import closing
+from datetime import datetime, timezone
+import re
 
 import requests
 
-from ..config import ESCO_OCCUPATION_URL, ESCO_VERSION, REQUEST_TIMEOUT
+from ..config import (
+    ESCO_LANGUAGE,
+    ESCO_OCCUPATION_URL,
+    ESCO_VERSION,
+    REQUEST_TIMEOUT,
+)
+from ..database import get_connection
+from ..logger import get_logger, setup_logging
 
-BASE_DIR = Path(__file__).resolve().parents[2]
-DATA_DIR = BASE_DIR / "data" / "processed"
-
-INPUT_FILE = DATA_DIR / "esco_skill_occupations.json"
-OUTPUT_FILE = DATA_DIR / "esco_it_occupations.json"
-CODES_FILE = DATA_DIR / "esco_occupation_codes.json"
+logger = get_logger(__name__)
 
 EXTRA_ICT_CODES = {
     "1330.6",  # ICT product manager
@@ -24,94 +27,150 @@ def is_ict_occupation(code):
         or code in EXTRA_ICT_CODES
     )
 
-def filter_it_occupations():
 
-    with open(INPUT_FILE, encoding="utf-8") as file:
-        skills_data = json.load(file)
+def validate_occupation_code(code):
+    """Validate an ESCO occupation code."""
 
-    # Collect unique occupations
-    unique_occupations = {}
+    if not isinstance(code, str):
+        raise ValueError("Occupation code must be a string")
 
-    for skill_data in skills_data.values():
-        for relation in ("essential_occupations", "optional_occupations"):
-            for occupation in skill_data.get(relation, []):
-                uri = occupation.get("uri")
-                if uri:
-                    unique_occupations[uri] = occupation["title"]
+    code = code.strip()
 
-    print(f"Unique occupations: {len(unique_occupations)}")
+    if not re.fullmatch(r"\d{4}(?:\.\d+)*", code):
+        raise ValueError(f"Invalid occupation code: {code}")
 
-    # Fetch ISCO codes
-    occupation_codes = {}
+    return code
 
-    for number, (uri, title) in enumerate(unique_occupations.items(), start=1):
+
+def get_pending_occupations(limit=20):
+    """Return occupations that have not been classified yet."""
+
+    with closing(get_connection()) as conn:
+        rows = conn.execute(
+            """
+            SELECT occupation_uri, title
+            FROM occupation
+            WHERE fetched_at IS NULL
+            ORDER BY occupation_uri
+            LIMIT ?
+            """,
+            (limit,),
+        ).fetchall()
+
+    return rows
+
+
+def save_occupation_classification(occupation_uri, code):
+    """Save an occupation code and its ICT classification."""
+
+    category = "ICT" if is_ict_occupation(code) else "non-ICT"
+
+    with closing(get_connection()) as conn:
+        with conn:
+            cursor = conn.execute(
+                """
+                UPDATE occupation
+                SET
+                    isco_code = ?,
+                    ict_category = ?,
+                    fetched_at = ?
+                WHERE occupation_uri = ?
+                """,
+                (
+                    code,
+                    category,
+                    datetime.now(timezone.utc).isoformat(),
+                    occupation_uri,
+                ),
+            )
+
+            if cursor.rowcount != 1:
+                raise ValueError(
+                    f"Occupation not found: {occupation_uri}"
+                )
+
+    return category
+
+
+def filter_it_occupations(limit=20):
+    """Fetch occupation codes and classify occupations as ICT or non-ICT."""
+
+    occupations = get_pending_occupations(limit=limit)
+
+    logger.info(
+        "Starting ESCO occupation classification. Pending: %s",
+        len(occupations),
+    )
+
+    stats = {
+        "processed": 0,
+        "ict": 0,
+        "non_ict": 0,
+        "failed": 0,
+    }
+
+    for number, (uri, title) in enumerate(occupations, start=1):
+        logger.info(
+            "Classifying occupation %s/%s: %s",
+            number,
+            len(occupations),
+            title,
+        )
+
         try:
             response = requests.get(
                 ESCO_OCCUPATION_URL,
                 params={
                     "uri": uri,
-                    "language": "en",
-                    "selectedVersion": ESCO_VERSION
+                    "language": ESCO_LANGUAGE,
+                    "selectedVersion": ESCO_VERSION,
                 },
-                timeout=REQUEST_TIMEOUT
+                timeout=REQUEST_TIMEOUT,
             )
             response.raise_for_status()
 
             data = response.json()
-            code = str(data.get("code", ""))
 
-            occupation_codes[uri] = {
-                "title": title,
-                "code": code,
-                "is_it": is_ict_occupation(code)
-            }
+            if not isinstance(data, dict):
+                raise ValueError("Invalid ESCO occupation response")
 
-            print(f"[{number}/{len(unique_occupations)}] {title}: {code}")
+            code = data.get("code")
 
-        except (requests.RequestException, ValueError) as error:
-            print(f"ERROR: {title}: {error}")
-            occupation_codes[uri] = {
-                "title": title,
-                "code": None,
-                "is_it": False,
-                "error": str(error)
-            }
+            if not isinstance(code, str) or not code.strip():
+                raise ValueError(
+                    f"Missing occupation code for {uri}"
+                )
+
+            code = validate_occupation_code(code)
+
+            category = save_occupation_classification(uri, code)
+
+            stats["processed"] += 1
+
+            if category == "ICT":
+                stats["ict"] += 1
+            else:
+                stats["non_ict"] += 1
+
+            logger.info("%s: %s (%s)", title, code, category)
+
+        except (requests.RequestException, ValueError):
+            stats["failed"] += 1
+            logger.exception(
+                "Failed to classify occupation: %s",
+                title,
+            )
 
         time.sleep(0.2)
 
-    
+    logger.info(
+        "ESCO occupation classification completed: %s",
+        stats,
+    )
 
-    with open(CODES_FILE, "w", encoding="utf-8") as file:
-        json.dump(occupation_codes, file, ensure_ascii=False, indent=4)
-
-    # Filter skill-occupation relationships
-    filtered_data = {}
-
-    for skill_uri, skill_data in skills_data.items():
-        filtered_data[skill_uri] = {
-            "esco_title": skill_data.get("esco_title"),
-            "essential_occupations": [],
-            "optional_occupations": []
-        }
-
-        for relation in ("essential_occupations", "optional_occupations"):
-            for occupation in skill_data.get(relation, []):
-                uri = occupation["uri"]
-
-                if occupation_codes.get(uri, {}).get("is_it"):
-                    filtered_data[skill_uri][relation].append({
-                        **occupation,
-                        "isco_code": occupation_codes[uri]["code"]
-                    })
-
-    # Save filtered results
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as file:
-        json.dump(filtered_data, file, ensure_ascii=False, indent=4)
-
-    print("\nFinished.")
-    print(f"IT occupations: {sum(x['is_it'] for x in occupation_codes.values())}")
-    print(f"Saved: {OUTPUT_FILE}")
+    return stats
 
 
 if __name__ == "__main__":
-    filter_it_occupations()   
+    setup_logging()
+    filter_it_occupations()

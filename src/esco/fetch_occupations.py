@@ -1,95 +1,276 @@
-import json
 import time
-from pathlib import Path
+from contextlib import closing
+from datetime import datetime, timezone
 
 import requests
 
-from ..config import ESCO_SKILL_URL, ESCO_VERSION, REQUEST_TIMEOUT
+from ..config import ESCO_LANGUAGE, ESCO_SKILL_URL, ESCO_VERSION, REQUEST_TIMEOUT
+from ..database import get_connection
+from ..logger import get_logger
 
-BASE_DIR = Path(__file__).resolve().parents[2]
+logger = get_logger(__name__)
 
-INPUT_FILE = BASE_DIR / "data" / "processed" / "esco_skill_mapping.json"
-OUTPUT_FILE = BASE_DIR / "data" / "processed" / "esco_skill_occupations.json"
 
-def fetch_occupations():
-    # Load confirmed ESCO skill mappings
-    with open(INPUT_FILE, "r", encoding="utf-8") as file:
-        mapping = json.load(file)
+def get_mapped_esco_skills(limit=20):
+    """Return unique ESCO skill URIs with confirmed mappings."""
 
-    # Collect unique ESCO skill URIs
-    # Multiple MeetFrank skills may map to the same ESCO skill
-    unique_uris = {
-        info["esco_uri"]
-        for info in mapping.values()
-        if info["status"] in ("exact", "broader")
-        and info.get("esco_uri")
+    with closing(get_connection()) as conn:
+        rows = conn.execute(
+            """
+            SELECT DISTINCT sm.esco_uri
+            FROM skill_mapping AS sm
+            LEFT JOIN esco_occupation_fetch AS eof
+                ON sm.esco_uri = eof.esco_uri
+            WHERE sm.status IN ('exact', 'broader')
+            AND sm.esco_uri IS NOT NULL
+            AND eof.esco_uri IS NULL
+            ORDER BY sm.esco_uri
+            LIMIT ?
+            """,
+            (limit,),
+        ).fetchall()
+
+    return [row[0] for row in rows]
+
+
+def check_occupation_conflicts(data):
+    """Reject occupations with conflicting relationship types."""
+
+    links = data.get("_links", {})
+
+    def extract_uris(relation_name):
+        occupations = links.get(relation_name, [])
+
+        if isinstance(occupations, dict):
+            occupations = [occupations]
+
+        return {
+            occupation["uri"]
+            for occupation in occupations
+        }
+
+    essential_uris = extract_uris("isEssentialForOccupation")
+    optional_uris = extract_uris("isOptionalForOccupation")
+
+    conflicts = essential_uris & optional_uris
+
+    if conflicts:
+        raise ValueError(
+            "Conflicting ESCO occupation relationships: "
+            + ", ".join(sorted(conflicts))
+        )
+
+
+def save_skill_occupations(esco_uri, data):
+    """Save ESCO occupations and their relationships to a skill."""
+
+    validate_occupation_response(data)
+    check_occupation_conflicts(data)
+
+    links = data.get("_links", {})
+
+    relation_types = {
+        "isEssentialForOccupation": "essential",
+        "isOptionalForOccupation": "optional",
     }
 
-    print(f"Unique ESCO skills: {len(unique_uris)}")
+    saved_relations = 0
 
-    occupations_data = {}
+    with closing(get_connection()) as conn:
+        with conn:
+            for link_name, relation_type in relation_types.items():
+                occupations = links.get(link_name, [])
 
-    for number, uri in enumerate(sorted(unique_uris), start=1):
-        print(f"[{number}/{len(unique_uris)}] {uri}")
+                if isinstance(occupations, dict):
+                    occupations = [occupations]
+
+                for occupation in occupations:
+                    occupation_uri = occupation.get("uri")
+                    title = occupation.get("title")
+
+                    if not occupation_uri or not title:
+                        logger.warning(
+                            "Skipping occupation with missing URI or title: %s",
+                            occupation,
+                        )
+                        continue
+
+                    conn.execute(
+                        """
+                        INSERT INTO occupation (occupation_uri, title)
+                        VALUES (?, ?)
+                        ON CONFLICT(occupation_uri) DO UPDATE SET
+                            title = excluded.title
+                        """,
+                        (occupation_uri, title),
+                    )
+
+                    conn.execute(
+                        """
+                        INSERT INTO esco_skill_occupation (
+                            esco_uri,
+                            occupation_uri,
+                            relation_type
+                        )
+                        VALUES (?, ?, ?)
+                        ON CONFLICT(esco_uri, occupation_uri) DO UPDATE SET
+                            relation_type = excluded.relation_type
+                        """,
+                        (esco_uri, occupation_uri, relation_type),
+                    )
+
+                    saved_relations += 1
+            
+            conn.execute(
+                """
+                INSERT INTO esco_occupation_fetch (
+                    esco_uri,
+                    fetched_at,
+                    relation_count
+                )
+                VALUES (?, ?, ?)
+                ON CONFLICT(esco_uri) DO UPDATE SET
+                    fetched_at = excluded.fetched_at,
+                    relation_count = excluded.relation_count
+                """,
+                (
+                    esco_uri,
+                    datetime.now(timezone.utc).isoformat(),
+                    saved_relations,
+                ),
+            )
+
+    logger.info(
+        "Saved %s occupation relationships for ESCO skill %s",
+        saved_relations,
+        esco_uri,
+    )
+
+    return saved_relations
+
+
+def validate_occupation_response(data):
+    """Validate the ESCO skill response before saving occupations."""
+
+    if not isinstance(data, dict):
+        raise ValueError("ESCO response must be a JSON object")
+
+    links = data.get("_links")
+
+    if not isinstance(links, dict):
+        raise ValueError("ESCO response has no valid _links object")
+
+    for relation_name in (
+        "isEssentialForOccupation",
+        "isOptionalForOccupation",
+    ):
+        occupations = links.get(relation_name, [])
+
+        if not isinstance(occupations, (list, dict)):
+            raise ValueError(
+                f"Invalid occupation relationship: {relation_name}"
+            )
+
+        if isinstance(occupations, dict):
+            occupations = [occupations]
+
+        for occupation in occupations:
+            if not isinstance(occupation, dict):
+                raise ValueError(
+                    f"Invalid occupation entry in {relation_name}"
+                )
+
+            if not occupation.get("uri") or not occupation.get("title"):
+                raise ValueError(
+                    f"Occupation is missing URI or title in {relation_name}"
+                )
+
+
+def fetch_occupations(limit=20):
+    """Fetch and save occupations for unmapped ESCO skill relations."""
+
+    skills = get_mapped_esco_skills(limit=limit)
+
+    logger.info(
+        "Starting ESCO occupation fetching. Skills to process: %s",
+        len(skills),
+    )
+
+    stats = {
+        "processed": 0,
+        "relations": 0,
+        "failed": 0,
+        "skipped": 0,
+    }
+
+    for number, esco_uri in enumerate(skills, start=1):
+        logger.info(
+            "Processing ESCO skill %s/%s: %s",
+            number,
+            len(skills),
+            esco_uri,
+        )
 
         try:
             response = requests.get(
                 ESCO_SKILL_URL,
                 params={
-                    "uri": uri,
-                    "language": "en",
-                    "selectedVersion": ESCO_VERSION
+                    "uri": esco_uri,
+                    "language": ESCO_LANGUAGE,
+                    "selectedVersion": ESCO_VERSION,
                 },
-                timeout=REQUEST_TIMEOUT
+                timeout=REQUEST_TIMEOUT,
             )
+
             response.raise_for_status()
 
             data = response.json()
-            links = data.get("_links", {})
+            validate_occupation_response(data)
 
-            essential = links.get("isEssentialForOccupation", [])
-            optional = links.get("isOptionalForOccupation", [])
+            links = data["_links"]
 
-            # Handle API responses containing a single object instead of a list
-            if isinstance(essential, dict):
-                essential = [essential]
+            if not any(
+                key in links
+                for key in (
+                    "isEssentialForOccupation",
+                    "isOptionalForOccupation",
+                )
+            ):
+                logger.warning(
+                    "No occupation relationship fields for %s. "
+                    "Skipping until the response can be verified.",
+                    esco_uri,
+                )
+                stats["skipped"] += 1
+                continue
 
-            if isinstance(optional, dict):
-                optional = [optional]
+            relation_count = save_skill_occupations(
+                esco_uri,
+                data,
+            )
 
-            occupations_data[uri] = {
-                "esco_title": data.get("title"),
-                "essential_occupations": [
-                    {
-                        "title": item.get("title"),
-                        "uri": item.get("uri")
-                    }
-                    for item in essential
-                ],
-                "optional_occupations": [
-                    {
-                        "title": item.get("title"),
-                        "uri": item.get("uri")
-                    }
-                    for item in optional
-                ]
-            }
+            stats["processed"] += 1
+            stats["relations"] += relation_count
 
         except (requests.RequestException, ValueError) as error:
-            print(f"ERROR: {error}")
-            occupations_data[uri] = {
-                "error": str(error)
-            }
+            stats["failed"] += 1
+            logger.exception(
+                "Failed to fetch occupations for ESCO skill %s",
+                esco_uri,
+            )
 
         time.sleep(0.2)
 
-    # Save occupation relationships
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as file:
-        json.dump(occupations_data, file, ensure_ascii=False, indent=4)
+    logger.info(
+        "ESCO occupation fetching completed. Statistics: %s",
+        stats,
+    )
 
-    print("\nFinished.")
-    print(f"ESCO skills processed: {len(occupations_data)}")
-    print(f"Saved: {OUTPUT_FILE}")
+    return stats
+
 
 if __name__ == "__main__":
-    fetch_occupations()   
+    from ..logger import setup_logging
+
+    setup_logging()
+    fetch_occupations()

@@ -190,6 +190,16 @@ def create_tables():
                 )
             """)
 
+            # 13. Track occupation fetching for each ESCO skill
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS esco_occupation_fetch (
+                    esco_uri TEXT PRIMARY KEY,
+                    fetched_at TEXT NOT NULL,
+                    relation_count INTEGER NOT NULL DEFAULT 0,
+                    FOREIGN KEY (esco_uri) REFERENCES esco_skill(esco_uri)
+                );
+            """)
+
     logger.info("Database tables created successfully.")
 
 def start_pipeline_run():
