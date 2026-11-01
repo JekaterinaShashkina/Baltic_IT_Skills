@@ -1,11 +1,12 @@
 
 from datetime import datetime, timezone
 import sqlite3
-from pathlib import Path
 from contextlib import closing
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DB_PATH = BASE_DIR / "data" / "baltic_it_skills.db"
+from .logger import get_logger
+from .config import DB_PATH
+
+logger = get_logger(__name__)
 
 
 def get_connection():
@@ -18,7 +19,7 @@ def create_tables():
     with closing(get_connection()) as conn:
         with conn:
 
-            # 1. Уникальные вакансии MeetFrank
+            # 1. Unique MeetFrank job postings
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS job (
                     job_id TEXT PRIMARY KEY NOT NULL,
@@ -36,7 +37,7 @@ def create_tables():
                 )
             """)
 
-            # 2. Связь вакансий со странами
+            # 2. Relationship between jobs and countries
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS job_countries (
                     job_id TEXT NOT NULL,
@@ -50,7 +51,7 @@ def create_tables():
                 )
             """)
 
-            # 3. Справочник навыков
+            # 3. Skill reference table
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS skill (
                     skill_id INTEGER PRIMARY KEY,
@@ -59,7 +60,7 @@ def create_tables():
                 )
             """)
 
-            # 4. Связь вакансий с навыками
+            # 4. Relationship between jobs and skills
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS job_skill (
                     job_id TEXT NOT NULL,
@@ -74,7 +75,8 @@ def create_tables():
                         REFERENCES skill(skill_id)
                 )
             """)
-            # 5. pipeline run Хранит информацию о каждом запуске
+
+            # 5. Store information about each pipeline run
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS pipeline_run (
                     run_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -89,7 +91,7 @@ def create_tables():
                 )
             """)
 
-            # 6. История наблюдений
+            # 6. Job observation history
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS job_observation (
                     job_obs_id INTEGER PRIMARY KEY,
@@ -110,8 +112,7 @@ def create_tables():
             """)
 
 
-            # 7. pipeline_run_countries Хранит результаты каждого запуска отдельно по странам.
-
+            # 7. Store pipeline results for each country
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS pipeline_run_countries (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -129,6 +130,7 @@ def create_tables():
                 )
             """)
 
+            # 8. ESCO skill reference table
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS esco_skill (
                     esco_uri TEXT PRIMARY KEY,
@@ -137,7 +139,8 @@ def create_tables():
                     fetched_at TEXT
                 );
             """)
-
+            
+            # 9. ESCO occupation reference table
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS occupation (
                     occupation_uri TEXT PRIMARY KEY,
@@ -148,6 +151,7 @@ def create_tables():
                 );
             """)
 
+            # 10. Mapping between MeetFrank skills and ESCO skills
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS skill_mapping (
                     skill_id INTEGER PRIMARY KEY,
@@ -161,6 +165,7 @@ def create_tables():
                 );
             """)
 
+            # 11. Relationship between ESCO skills and occupations
             conn.execute("""
                     CREATE TABLE IF NOT EXISTS esco_skill_occupation (
                     esco_uri TEXT NOT NULL,
@@ -171,7 +176,8 @@ def create_tables():
                     FOREIGN KEY (occupation_uri) REFERENCES occupation(occupation_uri)
                 );
             """)
-            # Учёт проверок навыков MeetFrank через ESCO
+
+            # 12. History of MeetFrank skill checks against ESCO
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS esco_check (
                     skill_id INTEGER PRIMARY KEY,
@@ -184,7 +190,17 @@ def create_tables():
                 )
             """)
 
-    print("Database tables created successfully.")
+            # 13. Track occupation fetching for each ESCO skill
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS esco_occupation_fetch (
+                    esco_uri TEXT PRIMARY KEY,
+                    fetched_at TEXT NOT NULL,
+                    relation_count INTEGER NOT NULL DEFAULT 0,
+                    FOREIGN KEY (esco_uri) REFERENCES esco_skill(esco_uri)
+                );
+            """)
+
+    logger.info("Database tables created successfully.")
 
 def start_pipeline_run():
     started_at = datetime.now(timezone.utc).isoformat()

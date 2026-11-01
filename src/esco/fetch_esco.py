@@ -1,21 +1,32 @@
 import requests
 
-ESCO_API_URL = "https://ec.europa.eu/esco/api/search"
+from ..config import (
+    ESCO_API_URL,
+    ESCO_SKILL_URL,
+    ESCO_VERSION,
+    ESCO_LANGUAGE,
+    ESCO_SEARCH_LIMIT,
+    REQUEST_TIMEOUT,
+)
+from ..logger import get_logger
+
+logger = get_logger(__name__)
 
 
 def search_esco_skill(skill_name):
+    logger.debug("Searching ESCO for skill: %s", skill_name)
     params = {
         "text": skill_name,
-        "language": "en",
+        "language": ESCO_LANGUAGE,
         "type": "skill",
-        "limit": 10,
-        "selectedVersion": "v1.2.0"
+        "limit": ESCO_SEARCH_LIMIT,
+        "selectedVersion": ESCO_VERSION
     }
 
     response = requests.get(
         ESCO_API_URL,
         params=params,
-        timeout=30
+        timeout=REQUEST_TIMEOUT
     )
 
     response.raise_for_status()
@@ -28,20 +39,29 @@ def search_esco_skill(skill_name):
             f"HTTP {response.status_code}, "
             f"Content-Type: {content_type}"
         )
-
+    
+    logger.debug(
+        "ESCO search response received for skill: %s",
+        skill_name,
+    )
     return response.json()
 
 
 def get_esco_skill_details(esco_uri):
-    url = "https://ec.europa.eu/esco/api/resource/skill"
 
     params = {
         "uri": esco_uri,
-        "language": "en",
-        "selectedVersion": "v1.2.0"
+        "language": ESCO_LANGUAGE,
+        "selectedVersion": ESCO_VERSION
     }
 
-    response = requests.get(url, params=params, timeout=30)
+    logger.debug("Fetching ESCO skill details: %s", esco_uri)
+
+    response = requests.get(
+        ESCO_SKILL_URL, 
+        params=params, 
+        timeout=REQUEST_TIMEOUT)
+    
     response.raise_for_status()
 
     content_type = response.headers.get("Content-Type", "")
@@ -52,23 +72,8 @@ def get_esco_skill_details(esco_uri):
             f"HTTP {response.status_code}, "
             f"Content-Type: {content_type}"
         )
+    
+    logger.debug("ESCO skill details received: %s", esco_uri)
 
     return response.json()
-
-
-
-
-if __name__ == "__main__":
-    uri = "http://data.europa.eu/esco/skill/21d2f96d-35f7-4e3f-9745-c533d2dd6e97"
-
-    details = get_esco_skill_details(uri)
-
-    print("Preferred label:")
-    print(details.get("preferredLabel", {}).get("en"))
-
-    print("\nAlternative labels:")
-    print(details.get("alternativeLabel", {}).get("en", []))
-
-    print("\nDescription:")
-    print(details.get("description", {}).get("en"))
 

@@ -3,12 +3,13 @@ import json
 from datetime import datetime, timezone
 from contextlib import closing
 
-try:
-    from .database import get_connection
-    from .load_meetfrank import save_observation, sync_job_skills
-except ImportError:
-    from database import get_connection
-    from load_meetfrank import save_observation, sync_job_skills
+from ..database import get_connection
+from ..logger import get_logger
+from .observations import save_observation
+from .job_skills import sync_job_skills
+
+
+logger = get_logger(__name__)
 
 
 def update_meetfrank(jobs, observed_at=None, run_id=None):
@@ -18,8 +19,13 @@ def update_meetfrank(jobs, observed_at=None, run_id=None):
     timestamp = observed_at.isoformat()
     observed_date = observed_at.date().isoformat()
 
-    # Группируем вакансии по ID, поскольку одна вакансия
-    # может встречаться в нескольких странах.
+    logger.info(
+        "Updating MeetFrank database. Country records: %s, observation date: %s",
+        len(jobs),
+        observed_date,
+    )
+
+    # Group jobs by ID because the same job may appear in multiple countries.
     grouped = {}
 
     for job in jobs:
@@ -45,7 +51,7 @@ def update_meetfrank(jobs, observed_at=None, run_id=None):
 
         grouped[job_id]["countries"].add(country)
 
-    # Все изменения внутри одной транзакции.
+    # Perform all database changes within a single transaction.
     with closing(get_connection()) as conn:
         with conn:
             existing_job_ids = {
@@ -125,17 +131,19 @@ def update_meetfrank(jobs, observed_at=None, run_id=None):
                         conn, job_id, country, skills, observed_date, run_id=run_id
                     )
 
-    print(
-        f"Updated {len(grouped)} unique jobs, "
-        f"{len(jobs)} country records for {observed_date}"
-        
+    logger.info(
+        "MeetFrank database updated. Date: %s, unique jobs: %s, "
+        "country records: %s, new jobs: %s, updated jobs: %s, new skills: %s",
+        observed_date,
+        len(grouped),
+        len(jobs),
+        new_jobs,
+        updated_jobs,
+        new_skills,
     )
-    print(f"New jobs: {new_jobs}")
-    print(f"Updated jobs: {updated_jobs}")
-    print(f"New skills: {new_skills}")
 
     return {
-    "new_jobs": new_jobs,
-    "updated_jobs": updated_jobs,
-    "new_skills": new_skills
-}
+        "new_jobs": new_jobs,
+        "updated_jobs": updated_jobs,
+        "new_skills": new_skills,
+    }

@@ -4,8 +4,8 @@ from unittest.mock import patch
 from contextlib import closing
 
 from src.database import get_connection, create_tables
-from src.fetch_meetfrank import fetch_all_jobs
-from src.update_meetfrank import update_meetfrank
+from src.meetfrank.fetch_meetfrank import fetch_all_jobs
+from src.meetfrank.update_meetfrank import update_meetfrank
 
 
 def test_live_pipeline():

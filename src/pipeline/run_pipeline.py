@@ -1,0 +1,91 @@
+from ..database import create_tables, finish_pipeline_run, save_country_run, save_pipeline_stats, start_pipeline_run
+from ..meetfrank.fetch_meetfrank import fetch_jobs, normalize_job
+from ..meetfrank.update_meetfrank import update_meetfrank
+from ..config import COUNTRIES
+from ..esco.match_esco import check_esco_matches
+from ..logger import get_logger, setup_logging
+from ..esco.fetch_occupations import fetch_occupations
+from ..esco.filter_it_occupations import filter_it_occupations
+
+logger = get_logger(__name__)
+
+def run_pipeline():
+    setup_logging()
+    logger.info("ETL pipeline started")
+
+    try:
+        create_tables()
+        run_id = start_pipeline_run()
+    except Exception:
+        logger.exception("Failed to initialize ETL pipeline")
+        raise
+
+    try:
+        all_jobs = []
+        for country in COUNTRIES:
+            try:
+                jobs = fetch_jobs(country)
+
+                if not jobs:
+                    raise ValueError(f"No jobs returned for {country}")
+                
+                normalized_jobs = [
+                    normalize_job(job, country)
+                    for job in jobs
+                ]
+                all_jobs.extend(normalized_jobs)
+                save_country_run(
+                    run_id, country, "success", len(jobs)
+                )
+                logger.info("%s: %s jobs received", country, len(jobs))
+            except Exception as error:
+                save_country_run(
+                    run_id, country, "failed", error_message=str(error)
+                )
+                raise
+
+        stats = update_meetfrank(all_jobs, run_id=run_id)
+        save_pipeline_stats(run_id, stats)
+
+    except Exception as error:
+        logger.exception("ETL pipeline failed. Run ID: %s", run_id)
+        finish_pipeline_run(run_id, "failed", str(error))
+        raise
+    else:
+        finish_pipeline_run(run_id,  "success")
+        logger.info("MeetFrank pipeline completed successfully. Run ID: %s", run_id)
+
+    # Run ESCO matching after the MeetFrank pipeline completes
+    logger.info("ESCO matching started")
+    try:
+        esco_stats = check_esco_matches(limit=20)
+        logger.info("ESCO matching completed. Statistics: %s", esco_stats)
+    except Exception:
+        logger.exception("ESCO matching stage failed")
+
+    
+    # Fetch occupations for mapped ESCO skills
+    logger.info("ESCO occupation fetching started")
+    try:
+        occupation_stats = fetch_occupations(limit=20)
+        logger.info(
+            "ESCO occupation fetching completed. Statistics: %s",
+            occupation_stats,
+        )
+    except Exception:
+        logger.exception("ESCO occupation fetching stage failed")
+
+    # Classify occupations as ICT or non-ICT
+    logger.info("ESCO occupation classification started")
+    try:
+        classification_stats = filter_it_occupations(limit=50)
+        logger.info(
+            "ESCO occupation classification completed. Statistics: %s",
+            classification_stats,
+        )
+    except Exception:
+        logger.exception("ESCO occupation classification stage failed")
+
+
+if __name__ == "__main__":
+    run_pipeline()
