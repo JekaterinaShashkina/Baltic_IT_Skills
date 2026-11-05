@@ -1,5 +1,5 @@
 const express = require("express");
-const db = require("../database");
+const jobsController = require("../controllers/jobs.controller");
 
 const router = express.Router();
 
@@ -14,14 +14,30 @@ const router = express.Router();
  *       200:
  *         description: List of job vacancies
  */
-router.get("/", (req, res) => {
-  try {
-    const jobs = db.prepare("SELECT * FROM job LIMIT 20").all();
-    res.json(jobs);
-  } catch (error) {
-    console.error("Error fetching jobs:", error);
-    res.status(500).json({ error: "Failed to fetch jobs" });
-  }
-});
+router.get("/", jobsController.getAllJobs);
+
+/**
+ * @swagger
+ * /api/jobs/{jobId}:
+ *   get:
+ *     summary: Get job details with required skills
+ *     tags:
+ *       - Jobs
+ *     parameters:
+ *       - in: path
+ *         name: jobId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: MeetFrank job identifier
+ *     responses:
+ *       200:
+ *         description: Job details with skills
+ *       404:
+ *         description: Job not found
+ *       500:
+ *         description: Internal server error
+ */
+router.get("/:jobId", jobsController.getJobById);
 
 module.exports = router;

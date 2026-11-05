@@ -1,8 +1,8 @@
-console.log("SERVER FILE STARTED");
 const express = require("express");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger");
+const logger = require("./src/utils/logger");
 
 const jobsRouter = require("./src/routes/jobs");
 const skillsRouter = require("./src/routes/skills");
@@ -34,5 +34,5 @@ app.use("/api/jobs", jobsRouter);
 app.use("/api/skills", skillsRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  logger.info(`Server running at http://localhost:${PORT}`);
 });
