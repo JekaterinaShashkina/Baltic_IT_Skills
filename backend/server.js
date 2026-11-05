@@ -1,12 +1,11 @@
 console.log("SERVER FILE STARTED");
 const express = require("express");
 const cors = require("cors");
-const db = require("./database");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger");
 
-const jobsRouter = require("./routes/jobs");
-const skillsRouter = require("./routes/skills");
+const jobsRouter = require("./src/routes/jobs");
+const skillsRouter = require("./src/routes/skills");
 
 const app = express();
 const PORT = 3001;
