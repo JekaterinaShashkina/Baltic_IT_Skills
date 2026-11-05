@@ -46,9 +46,11 @@ node_modules/
 .env
 .env.*
 !.env.example
+backend/logs/
 
 # Frontend build
 dist/
 
 # ETL logs
 /logs/
+
