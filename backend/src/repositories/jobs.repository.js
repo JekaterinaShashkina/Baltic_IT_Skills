@@ -15,7 +15,9 @@ const getAllJobs = (limit, offset, country) => {
           AND LOWER(jc.country) = LOWER(?)
       )
     )
-    ORDER BY j.job_id
+    ORDER BY
+        j.published_at DESC,
+        j.job_id ASC
     LIMIT ? OFFSET ?
   `,
     )
