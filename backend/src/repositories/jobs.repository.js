@@ -63,9 +63,33 @@ const getJobSkills = (jobId) => {
     .all(jobId);
 };
 
+const getJobsBySkills = (skillIds, excludeJobId = null) => {
+  if (!skillIds.length) {
+    return [];
+  }
+
+  const placeholders = skillIds.map(() => "?").join(", ");
+
+  return db
+    .prepare(
+      `
+      SELECT DISTINCT
+        j.job_id,
+        j.title,
+        j.company
+      FROM job j
+      JOIN job_skill js ON js.job_id = j.job_id
+      WHERE js.skill_id IN (${placeholders})
+        AND (? IS NULL OR j.job_id != ?)
+      `,
+    )
+    .all(...skillIds, excludeJobId, excludeJobId);
+};
+
 module.exports = {
   getAllJobs,
   countJobs,
   getJobById,
   getJobSkills,
+  getJobsBySkills,
 };

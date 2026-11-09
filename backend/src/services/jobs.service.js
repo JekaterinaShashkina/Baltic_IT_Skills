@@ -67,8 +67,43 @@ const matchJobSkills = (jobId, skillIds) => {
   };
 };
 
+const recommendJobs = (skillIds, excludeJobId = null, limit = 3) => {
+  if (!Array.isArray(skillIds) || skillIds.length === 0) {
+    return [];
+  }
+
+  const candidates = jobsRepository.getJobsBySkills(skillIds, excludeJobId);
+
+  const recommendations = candidates
+    .map((job) => {
+      const match = matchJobSkills(job.job_id, skillIds);
+
+      if (!match || match.matchedCount === 0) {
+        return null;
+      }
+
+      return {
+        jobId: job.job_id,
+        title: job.title,
+        company: job.company,
+        matchPercentage: match.matchPercentage,
+        matchedCount: match.matchedCount,
+        totalRequired: match.totalRequired,
+      };
+    })
+    .filter(Boolean)
+    .sort(
+      (a, b) =>
+        b.matchPercentage - a.matchPercentage ||
+        b.matchedCount - a.matchedCount,
+    );
+
+  return recommendations.slice(0, limit);
+};
+
 module.exports = {
   getAllJobs,
   getJobById,
   matchJobSkills,
+  recommendJobs,
 };

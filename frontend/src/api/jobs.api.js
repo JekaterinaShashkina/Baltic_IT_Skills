@@ -47,3 +47,48 @@ export const matchJobSkills = async (jobId, skillIds) => {
 
   return response.json();
 };
+
+export const getJobCounts = async () => {
+  const countries = ["estonia", "latvia", "lithuania"];
+
+  const results = await Promise.all(
+    countries.map(async (country) => {
+      const response = await fetch(
+        `/api/jobs?country=${country}&page=1&limit=1`,
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to load jobs for ${country}`);
+      }
+
+      const result = await response.json();
+      return result.pagination.total;
+    }),
+  );
+
+  return {
+    estonia: results[0],
+    latvia: results[1],
+    lithuania: results[2],
+  };
+};
+
+export const getRecommendedJobs = async (skillIds, excludeJobId) => {
+  const response = await fetch("/api/jobs/recommendations", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      skillIds,
+      excludeJobId,
+      limit: 3,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to load recommendations");
+  }
+
+  return response.json();
+};

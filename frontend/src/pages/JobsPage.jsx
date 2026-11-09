@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useJobs } from "../hooks/useJobs";
-import { JobList } from "../components/JobList";
+import { JobList } from "../components/jobs/JobList";
 import { CountryFilter } from "../components/CountryFilter";
 import { Pagination } from "../components/Pagination";
 

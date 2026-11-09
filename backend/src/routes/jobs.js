@@ -101,4 +101,44 @@ router.get("/:jobId", jobsController.getJobById);
  */
 router.post("/:jobId/match", jobsController.matchJobSkills);
 
+/**
+ * @swagger
+ * /api/jobs/recommendations:
+ *   post:
+ *     summary: Recommend jobs based on selected skills
+ *     tags:
+ *       - Jobs
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - skillIds
+ *             properties:
+ *               skillIds:
+ *                 type: array
+ *                 items:
+ *                   type: integer
+ *                 example: [3, 4, 5]
+ *               excludeJobId:
+ *                 type: string
+ *                 nullable: true
+ *                 description: Job ID to exclude from recommendations
+ *               limit:
+ *                 type: integer
+ *                 default: 3
+ *                 minimum: 1
+ *                 maximum: 10
+ *     responses:
+ *       200:
+ *         description: List of recommended jobs sorted by skill match
+ *       400:
+ *         description: Invalid request parameters
+ *       500:
+ *         description: Internal server error
+ */
+router.post("/recommendations", jobsController.recommendJobs);
+
 module.exports = router;

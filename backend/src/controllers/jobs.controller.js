@@ -92,8 +92,54 @@ const matchJobSkills = (req, res) => {
   }
 };
 
+const recommendJobs = (req, res) => {
+  try {
+    const { skillIds, excludeJobId = null, limit = 3 } = req.body ?? {};
+
+    if (
+      !Array.isArray(skillIds) ||
+      !skillIds.every((id) => Number.isInteger(id) && id > 0)
+    ) {
+      return res.status(400).json({
+        error: "skillIds must be an array of positive integers",
+      });
+    }
+
+    if (!Number.isInteger(limit) || limit < 1 || limit > 10) {
+      return res.status(400).json({
+        error: "limit must be an integer between 1 and 10",
+      });
+    }
+
+    if (
+      excludeJobId !== null &&
+      typeof excludeJobId !== "string" &&
+      typeof excludeJobId !== "number"
+    ) {
+      return res.status(400).json({
+        error: "Invalid excludeJobId",
+      });
+    }
+
+    const recommendations = jobsService.recommendJobs(
+      skillIds,
+      excludeJobId,
+      limit,
+    );
+
+    res.json(recommendations);
+  } catch (error) {
+    logger.error("Error recommending jobs", { error });
+
+    res.status(500).json({
+      error: "Failed to recommend jobs",
+    });
+  }
+};
+
 module.exports = {
   getAllJobs,
   getJobById,
   matchJobSkills,
+  recommendJobs,
 };

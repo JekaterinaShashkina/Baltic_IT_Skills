@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { useJob } from "../hooks/useJob";
 
-import { JobDetails } from "../components/JobDetail";
-import { SkillMatcher } from "../components/SkillMatcher";
+import { JobDetails } from "../components/jobs/JobDetail";
+import { SkillMatcher } from "../components/jobs/SkillMatcher";
 
 export const JobPage = () => {
   const { jobId } = useParams();

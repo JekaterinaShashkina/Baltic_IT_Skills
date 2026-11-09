@@ -1,13 +1,18 @@
 import { useState } from "react";
-import { matchJobSkills } from "../api/jobs.api";
+import { matchJobSkills, getRecommendedJobs } from "../../api/jobs.api";
+import { RecommendedJobs } from "./RecommendedJobs";
 
 export const SkillMatcher = ({ job }) => {
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [result, setResult] = useState(null);
+  const [recommendations, setRecommendations] = useState(null);
+  const [recommendationsError, setRecommendationsError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const toggleSkill = (skillId) => {
+    if (loading) return;
+
     setSelectedSkills((current) =>
       current.includes(skillId)
         ? current.filter((id) => id !== skillId)
@@ -15,17 +20,36 @@ export const SkillMatcher = ({ job }) => {
     );
 
     setResult(null);
+    setRecommendations(null);
+    setRecommendationsError(null);
   };
 
   const handleCompare = async () => {
     setLoading(true);
     setError(null);
+    setRecommendationsError(null);
+    setResult(null);
+    setRecommendations(null);
 
     try {
-      const data = await matchJobSkills(job.job_id, selectedSkills);
-      setResult(data);
-    } catch (err) {
-      setError(err.message);
+      const [matchResponse, recommendationsResponse] = await Promise.allSettled(
+        [
+          matchJobSkills(job.job_id, selectedSkills),
+          getRecommendedJobs(selectedSkills, job.job_id),
+        ],
+      );
+
+      if (matchResponse.status === "fulfilled") {
+        setResult(matchResponse.value);
+      } else {
+        setError(matchResponse.reason?.message ?? "Failed to compare skills");
+      }
+
+      if (recommendationsResponse.status === "fulfilled") {
+        setRecommendations(recommendationsResponse.value);
+      } else {
+        setRecommendationsError("Failed to load recommended jobs");
+      }
     } finally {
       setLoading(false);
     }
@@ -43,6 +67,7 @@ export const SkillMatcher = ({ job }) => {
               type="checkbox"
               checked={selectedSkills.includes(skill.skill_id)}
               onChange={() => toggleSkill(skill.skill_id)}
+              disabled={loading}
             />
             {skill.name}
           </label>
@@ -52,7 +77,7 @@ export const SkillMatcher = ({ job }) => {
       <button
         type="button"
         onClick={handleCompare}
-        disabled={loading}
+        disabled={loading || selectedSkills.length === 0}
         className="compare-button"
       >
         {loading ? "Comparing..." : "Compare skills"}
@@ -94,6 +119,11 @@ export const SkillMatcher = ({ job }) => {
             <p>You have all the listed skills!</p>
           )}
         </div>
+      )}
+      {recommendationsError && <p role="alert">{recommendationsError}</p>}
+
+      {result && recommendations !== null && (
+        <RecommendedJobs jobs={recommendations} />
       )}
     </section>
   );

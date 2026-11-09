@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export const Header = () => {
   return (
     <header className="site-header">
@@ -7,9 +9,15 @@ export const Header = () => {
           <span>Baltic IT Skills</span>
         </div>
 
-        <span className="site-header__subtitle">
-          IT Skills & Job Market Explorer
-        </span>
+        <nav className="site-nav" aria-label="Main navigation">
+          <NavLink to="/jobs" className="site-nav__link">
+            Jobs
+          </NavLink>
+
+          <NavLink to="/statistics" className="site-nav__link">
+            Statistics
+          </NavLink>
+        </nav>
       </div>
     </header>
   );
