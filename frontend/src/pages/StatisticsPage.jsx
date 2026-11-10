@@ -18,10 +18,31 @@ export const StatisticsPage = () => {
         <p>
           Explore the demand for IT skills across Estonia, Latvia and Lithuania.
         </p>
-        <StatisticsTabs activeTab={activeTab} onTabChange={setActiveTab} />
+        {/* <StatisticsTabs activeTab={activeTab} onTabChange={setActiveTab} /> */}
       </div>
 
-      {activeTab === "overview" && <StatisticsOverview />}
+      <div className="statistics-dashboard">
+        <section className="dashboard-panel">
+          <div className="jobs-header">
+            <h2>Top 10 IT skills</h2>
+            <CountryFilter country={country} onCountryChange={setCountry} />
+          </div>
+
+          {loading && <p>Loading statistics...</p>}
+          {error && <p role="alert">Error: {error}</p>}
+          {!loading && !error && <TopSkillsChart skills={skills} />}
+        </section>
+
+        <section className="dashboard-panel">
+          <CountryComparison />
+        </section>
+
+        <section className="dashboard-panel dashboard-panel--center">
+          <StatisticsOverview />
+        </section>
+      </div>
+
+      {/* {activeTab === "overview" && <StatisticsOverview />}
 
       {activeTab === "comparison" && <CountryComparison />}
       {activeTab === "top" && (
@@ -36,7 +57,7 @@ export const StatisticsPage = () => {
 
           {!loading && !error && <TopSkillsChart skills={skills} />}
         </>
-      )}
+      )} */}
     </main>
   );
 };

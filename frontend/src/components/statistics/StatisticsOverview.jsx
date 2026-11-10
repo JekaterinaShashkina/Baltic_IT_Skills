@@ -23,11 +23,7 @@ export const StatisticsOverview = () => {
           <span>Countries</span>
           <strong>3</strong>
         </div>
-      </div>
 
-      <h3>Job postings by country</h3>
-
-      <div className="overview-grid">
         {Object.entries(counts).map(([country, count]) => (
           <div className="overview-card" key={country}>
             <span>{country.charAt(0).toUpperCase() + country.slice(1)}</span>

@@ -17,7 +17,7 @@ export const TopSkillsChart = ({ skills }) => {
         <BarChart
           data={topSkills}
           layout="vertical"
-          margin={{ top: 10, right: 30, left: 45, bottom: 10 }}
+          margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
         >
           <CartesianGrid strokeDasharray="3 3" horizontal={false} />
 
@@ -26,7 +26,7 @@ export const TopSkillsChart = ({ skills }) => {
           <YAxis
             type="category"
             dataKey="name"
-            width={150}
+            width={70}
             tick={{ fontSize: 12 }}
           />
 
@@ -36,6 +36,7 @@ export const TopSkillsChart = ({ skills }) => {
             dataKey="job_count"
             name="Number of jobs"
             fill="#38b2ac"
+            barSize={18}
             radius={[0, 5, 5, 0]}
           />
         </BarChart>
