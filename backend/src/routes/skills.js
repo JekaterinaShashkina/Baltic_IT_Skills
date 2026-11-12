@@ -38,4 +38,28 @@ router.get("/", skillsController.getAllSkills);
 
 router.get("/statistics", skillsController.getSkillStatistics);
 
+/**
+ * @swagger
+ * /api/skills/{skillId}/occupations:
+ *   get:
+ *     summary: Get ESCO occupations for a specific skill
+ *     tags:
+ *       - Skills
+ *     parameters:
+ *       - in: path
+ *         name: skillId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the skill
+ *     responses:
+ *       200:
+ *         description: List of ESCO occupations related to the skill
+ *       400:
+ *         description: Invalid skill ID
+ *       500:
+ *         description: Failed to fetch ESCO occupations
+ */
+router.get("/:skillId/occupations", skillsController.getSkillOccupations);
+
 module.exports = router;

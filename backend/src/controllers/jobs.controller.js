@@ -55,6 +55,7 @@ const getJobById = (req, res) => {
     res.json(job);
   } catch (error) {
     logger.error("Error fetching job:", { error });
+    console.error("ACTUAL ERROR:", error);
     res.status(500).json({
       error: "Failed to fetch job",
     });

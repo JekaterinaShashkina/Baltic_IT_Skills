@@ -1,4 +1,5 @@
 import { SeniorityBadge } from "./SeniorityBadge";
+import { EscoSkillMapping } from "../esco/EscoSkillMapping";
 
 export const JobDetails = ({ job }) => {
   return (
@@ -25,16 +26,8 @@ export const JobDetails = ({ job }) => {
         </p>
       </div>
 
-      <h2>Required skills</h2>
-
       {job.skills?.length > 0 ? (
-        <div className="skill-list">
-          {job.skills.map((skill) => (
-            <span key={skill.skill_id} className="skill-tag">
-              {skill.name}
-            </span>
-          ))}
-        </div>
+        <EscoSkillMapping skills={job.skills} />
       ) : (
         <p>No skills listed for this job.</p>
       )}

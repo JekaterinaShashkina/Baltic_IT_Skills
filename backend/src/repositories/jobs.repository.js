@@ -51,14 +51,21 @@ const getJobSkills = (jobId) => {
   return db
     .prepare(
       `
-    SELECT
-      s.skill_id,
-      s.name
-    FROM job_skill js
-    JOIN skill s ON s.skill_id = js.skill_id
-    WHERE js.job_id = ?
-    ORDER BY s.name
-  `,
+      SELECT
+        s.skill_id,
+        s.name,
+        sm.status AS mapping_status,
+        es.title AS esco_title
+      FROM job_skill AS js
+      JOIN skill AS s
+        ON s.skill_id = js.skill_id
+      LEFT JOIN skill_mapping AS sm
+        ON sm.skill_id = s.skill_id
+      LEFT JOIN esco_skill AS es
+        ON es.esco_uri = sm.esco_uri
+      WHERE js.job_id = ?
+      ORDER BY s.name
+    `,
     )
     .all(jobId);
 };

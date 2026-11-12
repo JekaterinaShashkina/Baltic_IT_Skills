@@ -648,3 +648,54 @@
 }
 
 
+
+.esco-skills {
+  margin-top: 24px;
+}
+
+.esco-skills__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.esco-skills__header h2 {
+  margin: 0;
+}
+
+.esco-skills__summary {
+  color: #14866e;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.esco-skills__matched {
+  background-color: #d7f5e9;
+  border: 1px solid #6cc7a2;
+  color: #12694f;
+  font-weight: 600;
+  cursor: help;
+  transition: background-color 0.2s ease;
+}
+
+.esco-skills__matched:hover {
+  background-color: #b4ead4;
+}
+
+.esco-skills__note {
+  margin-top: 12px;
+  color: #64748b;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .esco-skills__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+

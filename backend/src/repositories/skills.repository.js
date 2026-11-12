@@ -38,7 +38,42 @@ const getSkillStatistics = (country) => {
     .all(country || null, country || null);
 };
 
+const getSkillOccupations = (skillId) => {
+  return db
+    .prepare(
+      `
+      SELECT
+        o.occupation_uri,
+        o.title AS occupation_title,
+        o.isco_code,
+        eso.relation_type,
+        es.title AS esco_skill_title
+      FROM skill s
+      JOIN skill_mapping sm
+        ON sm.skill_id = s.skill_id
+      JOIN esco_skill es
+        ON es.esco_uri = sm.esco_uri
+      JOIN esco_skill_occupation eso
+        ON eso.esco_uri = es.esco_uri
+      JOIN occupation o
+        ON o.occupation_uri = eso.occupation_uri
+      WHERE s.skill_id = ?
+        AND sm.status = 'exact'
+        AND o.ict_category = 'ICT'
+      ORDER BY
+        CASE eso.relation_type
+          WHEN 'essential' THEN 0
+          WHEN 'optional' THEN 1
+          ELSE 2
+        END,
+        o.title
+      `,
+    )
+    .all(skillId);
+};
+
 module.exports = {
   getAllSkills,
   getSkillStatistics,
+  getSkillOccupations,
 };
