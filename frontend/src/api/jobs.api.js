@@ -1,4 +1,4 @@
-const API_URL = "/api/jobs";
+import { JOBS_API_URL } from "../config/const";
 
 export const getJobs = async ({ page = 1, limit = 20, country = "" } = {}) => {
   const params = new URLSearchParams({
@@ -10,7 +10,7 @@ export const getJobs = async ({ page = 1, limit = 20, country = "" } = {}) => {
     params.set("country", country);
   }
 
-  const response = await fetch(`${API_URL}?${params}`);
+  const response = await fetch(`${JOBS_API_URL}?${params}`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch jobs");
@@ -20,7 +20,7 @@ export const getJobs = async ({ page = 1, limit = 20, country = "" } = {}) => {
 };
 
 export const getJobById = async (jobId) => {
-  const response = await fetch(`${API_URL}/${encodeURIComponent(jobId)}`);
+  const response = await fetch(`${JOBS_API_URL}/${encodeURIComponent(jobId)}`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch job");
@@ -31,7 +31,7 @@ export const getJobById = async (jobId) => {
 
 export const matchJobSkills = async (jobId, skillIds) => {
   const response = await fetch(
-    `${API_URL}/${encodeURIComponent(jobId)}/match`,
+    `${JOBS_API_URL}/${encodeURIComponent(jobId)}/match`,
     {
       method: "POST",
       headers: {

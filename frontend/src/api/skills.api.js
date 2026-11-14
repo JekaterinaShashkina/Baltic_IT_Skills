@@ -1,3 +1,5 @@
+import { SKILLS_API_URL } from "../config/const";
+
 export const getSkillStatistics = async (country = "") => {
   const params = new URLSearchParams();
 
@@ -6,7 +8,7 @@ export const getSkillStatistics = async (country = "") => {
   }
 
   const query = params.toString();
-  const url = `/api/skills/statistics${query ? `?${query}` : ""}`;
+  const url = `${SKILLS_API_URL}/statistics${query ? `?${query}` : ""}`;
 
   const response = await fetch(url);
 

@@ -1,15 +1,11 @@
 import { useState } from "react";
-import { useSkillStatistics } from "../hooks/useSkillStatistics";
-import { CountryFilter } from "../components/CountryFilter";
-import { TopSkillsChart } from "../components/statistics/TopSkillsChart";
 import { StatisticsTabs } from "../components/statistics/StatisticsTabs";
-import { CountryComparison } from "../components/statistics/CountryComparison";
-import { StatisticsOverview } from "../components/statistics/StatisticsOverview";
+import { MeetFrankDashboard } from "../components/statistics/MeetFrankDashboard";
+import { EscoDashboard } from "../components/statistics/EscoDashboard";
+// import { MapDashboard } from "../components/statistics/MapDashboard";
 
 export const StatisticsPage = () => {
-  const [country, setCountry] = useState("");
-  const [activeTab, setActiveTab] = useState("overview");
-  const { skills, loading, error } = useSkillStatistics(country);
+  const [activeTab, setActiveTab] = useState("meetfrank");
 
   return (
     <main className="page-content">
@@ -18,46 +14,13 @@ export const StatisticsPage = () => {
         <p>
           Explore the demand for IT skills across Estonia, Latvia and Lithuania.
         </p>
-        {/* <StatisticsTabs activeTab={activeTab} onTabChange={setActiveTab} /> */}
+        <StatisticsTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
-      <div className="statistics-dashboard">
-        <section className="dashboard-panel">
-          <div className="jobs-header">
-            <h2>Top 10 IT skills</h2>
-            <CountryFilter country={country} onCountryChange={setCountry} />
-          </div>
+      {activeTab === "meetfrank" && <MeetFrankDashboard />}
 
-          {loading && <p>Loading statistics...</p>}
-          {error && <p role="alert">Error: {error}</p>}
-          {!loading && !error && <TopSkillsChart skills={skills} />}
-        </section>
-
-        <section className="dashboard-panel">
-          <CountryComparison />
-        </section>
-
-        <section className="dashboard-panel dashboard-panel--center">
-          <StatisticsOverview />
-        </section>
-      </div>
-
-      {/* {activeTab === "overview" && <StatisticsOverview />}
-
-      {activeTab === "comparison" && <CountryComparison />}
-      {activeTab === "top" && (
-        <>
-          <div className="jobs-header">
-            <h2>Top 10 IT skills</h2>
-            <CountryFilter country={country} onCountryChange={setCountry} />
-          </div>
-
-          {loading && <p>Loading statistics...</p>}
-          {error && <p role="alert">Error: {error}</p>}
-
-          {!loading && !error && <TopSkillsChart skills={skills} />}
-        </>
-      )} */}
+      {activeTab === "esco" && <EscoDashboard />}
+      {/* {activeTab === "map" && <MapDashboard />} */}
     </main>
   );
 };

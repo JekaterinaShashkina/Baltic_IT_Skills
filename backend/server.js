@@ -6,6 +6,7 @@ const logger = require("./src/utils/logger");
 
 const jobsRouter = require("./src/routes/jobs");
 const skillsRouter = require("./src/routes/skills");
+const escoRouter = require("./src/routes/esco");
 
 const app = express();
 const PORT = 3001;
@@ -32,6 +33,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/api/jobs", jobsRouter);
 app.use("/api/skills", skillsRouter);
+app.use("/api/esco", escoRouter);
 
 app.listen(PORT, () => {
   logger.info(`Server running at http://localhost:${PORT}`);

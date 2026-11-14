@@ -1,10 +1,9 @@
-const tabs = [
-  { id: "overview", label: "Overview" },
-  { id: "top", label: "Top 10 skills" },
-  { id: "comparison", label: "Country comparison" },
-];
-
 export const StatisticsTabs = ({ activeTab, onTabChange }) => {
+  const tabs = [
+    { id: "meetfrank", label: "MeetFrank" },
+    { id: "esco", label: "ESCO Statistics" },
+    { id: "map", label: "Job Map " },
+  ];
   return (
     <nav className="statistics-tabs" aria-label="Statistics navigation">
       {tabs.map((tab) => (

@@ -647,8 +647,6 @@
   }
 }
 
-
-
 .esco-skills {
   margin-top: 24px;
 }
@@ -696,6 +694,103 @@
   .esco-skills__header {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+.esco-coverage__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.esco-coverage__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.esco-coverage__stat span {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.esco-coverage__stat strong {
+  font-size: 2rem;
+  color: #142b49;
+}
+
+.esco-coverage__progress {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.esco-coverage__progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: #0d9488;
+}
+
+.esco-coverage__note {
+  margin-top: 1rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.esco-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.esco-dashboard__charts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.esco-relations__chart {
+  width: 100%;
+  min-width: 0;
+}
+
+.esco-relations__summary {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  text-align: center;
+}
+
+.esco-relations__summary > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.esco-relations__summary strong {
+  font-size: 1.6rem;
+  color: #142b49;
+}
+
+.esco-relations__summary span {
+  color: #64748b;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+@media (max-width: 900px) {
+  .esco-dashboard__charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .esco-coverage__stats {
+    grid-template-columns: 1fr;
   }
 }
 

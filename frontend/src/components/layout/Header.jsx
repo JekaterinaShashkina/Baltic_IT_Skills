@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { JOBS_ROUTE, STATISTICS_ROUTE } from "../../config/const";
 
 export const Header = () => {
   return (
@@ -10,11 +11,11 @@ export const Header = () => {
         </div>
 
         <nav className="site-nav" aria-label="Main navigation">
-          <NavLink to="/jobs" className="site-nav__link">
+          <NavLink to={JOBS_ROUTE} className="site-nav__link">
             Jobs
           </NavLink>
 
-          <NavLink to="/statistics" className="site-nav__link">
+          <NavLink to={STATISTICS_ROUTE} className="site-nav__link">
             Statistics
           </NavLink>
         </nav>

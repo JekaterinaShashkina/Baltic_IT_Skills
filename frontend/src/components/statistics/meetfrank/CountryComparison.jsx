@@ -9,8 +9,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { useCountryComparison } from "../../hooks/useCountryComparison";
-import { prepareCountryComparison } from "../../utils/prepareCountryComparison";
+import { useCountryComparison } from "../../../hooks/useCountryComparison";
+import { prepareCountryComparison } from "../../../utils/prepareCountryComparison";
 
 export const CountryComparison = () => {
   const { data, loading, error } = useCountryComparison();

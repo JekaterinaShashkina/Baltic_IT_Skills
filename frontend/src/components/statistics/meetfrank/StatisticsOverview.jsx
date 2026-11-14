@@ -1,4 +1,4 @@
-import { useDatasetOverview } from "../../hooks/useDatasetOverview";
+import { useDatasetOverview } from "../../../hooks/useDatasetOverview";
 
 export const StatisticsOverview = () => {
   const { counts, loading, error } = useDatasetOverview();
