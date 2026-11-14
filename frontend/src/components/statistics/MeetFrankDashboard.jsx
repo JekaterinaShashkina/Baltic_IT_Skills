@@ -11,6 +11,9 @@ export const MeetFrankDashboard = () => {
 
   return (
     <div className="statistics-dashboard">
+      <section className="dashboard-panel dashboard-panel--center">
+        <StatisticsOverview />
+      </section>
       <section className="dashboard-panel">
         <div className="jobs-header">
           <h2>Top 10 IT skills</h2>
@@ -24,10 +27,6 @@ export const MeetFrankDashboard = () => {
 
       <section className="dashboard-panel">
         <CountryComparison />
-      </section>
-
-      <section className="dashboard-panel dashboard-panel--center">
-        <StatisticsOverview />
       </section>
     </div>
   );

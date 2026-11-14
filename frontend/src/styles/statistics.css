@@ -1,0 +1,121 @@
+
+/* Statistics charts */
+.statistics-chart {
+  margin-top: 24px;
+  padding: 28px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.statistics-chart h2 {
+  margin: 0 0 24px;
+  color: var(--color-primary);
+}
+
+.statistics-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  border-bottom: 1px solid var(--color-border);
+  margin: 24px 0 40px;
+}
+
+.statistics-tab {
+  padding: 12px 4px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.statistics-tab:hover {
+  color: var(--color-primary);
+}
+
+.statistics-tab.active {
+  color: var(--color-accent-dark);
+  border-bottom-color: var(--color-accent);
+  font-weight: 600;
+}
+
+.statistics-tab:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+.statistics-dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+
+/* OverView */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.overview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 18px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.overview-card span {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.overview-card strong {
+  color: var(--color-primary);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+
+.dashboard-panel {
+  min-width: 0;
+}
+
+.dashboard-panel--center {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+  justify-self: stretch;
+}
+
+
+@media (max-width: 1100px) {
+  .statistics-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-panel--center {
+    grid-column: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .overview-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  
+    .overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

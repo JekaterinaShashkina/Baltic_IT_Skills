@@ -1,0 +1,141 @@
+#root {
+  min-height: 100vh;
+}
+
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+
+.site-header {
+  background: var(--color-primary);
+  color: white;
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.site-header__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.site-brand__icon {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.site-header__subtitle {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.site-nav__link {
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.site-nav__link:hover {
+  color: var(--color-white);
+}
+
+.site-nav__link.active {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.site-nav__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 5px;
+  border-radius: 3px;
+}
+
+/* Main content */
+
+.page-content {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 48px 0 80px;
+  flex: 1;
+}
+
+.page-intro {
+  margin-bottom: 40px;
+}
+
+.page-intro h1 {
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.page-intro p {
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+}
+
+/* Footer */
+
+.site-footer {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-top: 3px solid var(--color-accent);
+}
+
+.site-footer__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 700px) {
+    main {
+    width: calc(100% - 32px);
+    padding-top: 28px;
+  }
+  .site-header__inner {
+    flex-wrap: wrap;
+  }
+
+  .site-nav {
+    gap: 18px;
+  }
+
+  .site-header__inner,
+  .site-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .page-content {
+    width: calc(100% - 32px);
+    padding: 28px 0 48px;
+  }
+}
