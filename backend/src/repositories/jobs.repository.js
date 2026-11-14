@@ -93,10 +93,45 @@ const getJobsBySkills = (skillIds, excludeJobId = null) => {
     .all(...skillIds, excludeJobId, excludeJobId);
 };
 
+const getJobsForMap = () => {
+  return db
+    .prepare(
+      `
+    SELECT
+      j.job_id,
+      j.title,
+      j.location,
+      GROUP_CONCAT(DISTINCT jc.country) AS source_countries
+    FROM job AS j
+    LEFT JOIN job_countries AS jc
+      ON jc.job_id = j.job_id
+    WHERE j.location IS NOT NULL
+      AND TRIM(j.location) <> ''
+    GROUP BY j.job_id, j.title, j.location
+  `,
+    )
+    .all();
+};
+
+const getJobLocations = () => {
+  return db
+    .prepare(
+      `
+      SELECT city, country, latitude, longitude, status
+      FROM job_locations
+      WHERE latitude IS NOT NULL
+        AND longitude IS NOT NULL
+    `,
+    )
+    .all();
+};
+
 module.exports = {
   getAllJobs,
   countJobs,
   getJobById,
   getJobSkills,
   getJobsBySkills,
+  getJobsForMap,
+  getJobLocations,
 };

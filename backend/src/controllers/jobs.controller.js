@@ -138,9 +138,37 @@ const recommendJobs = (req, res) => {
   }
 };
 
+const getJobMap = (req, res) => {
+  try {
+    const country = req.query.country ?? null;
+    const allowedCountries = ["estonia", "latvia", "lithuania"];
+
+    if (
+      country !== null &&
+      (typeof country !== "string" ||
+        !allowedCountries.includes(country.toLowerCase()))
+    ) {
+      return res.status(400).json({
+        error: "Invalid country",
+      });
+    }
+
+    const result = jobsService.getJobMap(country);
+
+    res.json(result);
+  } catch (error) {
+    logger.error("Error fetching job map", { error });
+
+    res.status(500).json({
+      error: "Failed to fetch job map",
+    });
+  }
+};
+
 module.exports = {
   getAllJobs,
   getJobById,
   matchJobSkills,
   recommendJobs,
+  getJobMap,
 };

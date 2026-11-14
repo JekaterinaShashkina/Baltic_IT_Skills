@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StatisticsTabs } from "../components/statistics/StatisticsTabs";
 import { MeetFrankDashboard } from "../components/statistics/MeetFrankDashboard";
 import { EscoDashboard } from "../components/statistics/EscoDashboard";
-// import { MapDashboard } from "../components/statistics/MapDashboard";
+import { MapDashboard } from "../components/statistics/MapDashboard";
 
 export const StatisticsPage = () => {
   const [activeTab, setActiveTab] = useState("meetfrank");
@@ -20,7 +20,7 @@ export const StatisticsPage = () => {
       {activeTab === "meetfrank" && <MeetFrankDashboard />}
 
       {activeTab === "esco" && <EscoDashboard />}
-      {/* {activeTab === "map" && <MapDashboard />} */}
+      {activeTab === "map" && <MapDashboard />}
     </main>
   );
 };

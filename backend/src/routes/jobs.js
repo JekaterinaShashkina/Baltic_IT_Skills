@@ -42,6 +42,28 @@ router.get("/", jobsController.getAllJobs);
 
 /**
  * @swagger
+ * /api/jobs/map:
+ *   get:
+ *     summary: Get job locations for mapping
+ *     tags:
+ *       - Jobs
+ *     parameters:
+ *       - in: query
+ *         name: country
+ *         schema:
+ *           type: string
+ *           enum: [estonia, latvia, lithuania]
+ *         description: Filter jobs by MeetFrank source country, not by city location
+ *     responses:
+ *       200:
+ *         description: List of job locations
+ *       400:
+ *         description: Invalid query parameters
+ */
+router.get("/map", jobsController.getJobMap);
+
+/**
+ * @swagger
  * /api/jobs/{jobId}:
  *   get:
  *     summary: Get job details with required skills
