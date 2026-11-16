@@ -25,4 +25,4 @@ jobs:
 
       - name: Check Python syntax
         run: |
-          python -m compileall -q src backend tests
+          python -m compileall -q etl backend tests

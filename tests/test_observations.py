@@ -2,8 +2,8 @@
 import sqlite3
 import json
 
-from src.meetfrank.observations import save_observation
-from src.meetfrank.job_skills import sync_job_skills
+from etl.meetfrank.observations import save_observation
+from etl.meetfrank.job_skills import sync_job_skills
 
 
 def test_observation_history():

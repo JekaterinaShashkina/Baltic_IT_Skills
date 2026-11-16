@@ -3,8 +3,8 @@ import sqlite3
 
 import pytest
 
-from src import database
-from src.esco import fetch_occupations as occupations
+from etl import database
+from etl.esco import fetch_occupations as occupations
 
 
 @pytest.fixture

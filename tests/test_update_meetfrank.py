@@ -6,8 +6,8 @@ from datetime import datetime, timezone
 
 import pytest
 
-import src.database as database
-from src.meetfrank.update_meetfrank import update_meetfrank
+import etl.database as database
+from etl.meetfrank.update_meetfrank import update_meetfrank
 
 
 TEST_DATE = datetime(2026, 10, 12, tzinfo=timezone.utc)

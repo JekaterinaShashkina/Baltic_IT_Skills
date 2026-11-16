@@ -23,7 +23,7 @@ The project aims to identify frequently requested IT skills, compare demand acro
 
 ## Project Structure
 
-- `src/` – data collection, processing, database operations, and ESCO integration.
+- `etl/` – data collection, processing, database operations, and ESCO integration.
 - `tests/` – automated tests and data validation scripts.
 - `experiments/` – experimental scripts and sample API responses.
 - `data/` – raw and processed data.
@@ -34,7 +34,7 @@ The project aims to identify frequently requested IT skills, compare demand acro
 From the project root directory:
 
 ```bash
-python -m src.run_pipeline
+python -m etl.run_pipeline
 ```
 
 The pipeline collects software engineering job advertisements from Estonia, Latvia, and Lithuania and updates the SQLite database.

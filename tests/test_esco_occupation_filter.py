@@ -1,8 +1,8 @@
 
 import pytest
 
-from src import database
-from src.esco import filter_it_occupations as occupation_filter
+from etl import database
+from etl.esco import filter_it_occupations as occupation_filter
 
 
 @pytest.fixture

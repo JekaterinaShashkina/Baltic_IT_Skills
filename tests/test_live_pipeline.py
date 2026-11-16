@@ -3,9 +3,9 @@ from pathlib import Path
 from unittest.mock import patch
 from contextlib import closing
 
-from src.database import get_connection, create_tables
-from src.meetfrank.fetch_meetfrank import fetch_all_jobs
-from src.meetfrank.update_meetfrank import update_meetfrank
+from etl.database import get_connection, create_tables
+from etl.meetfrank.fetch_meetfrank import fetch_all_jobs
+from etl.meetfrank.update_meetfrank import update_meetfrank
 
 
 def test_live_pipeline():
@@ -14,7 +14,7 @@ def test_live_pipeline():
     with TemporaryDirectory() as temp_dir:
         test_db = Path(temp_dir) / "test.db"
 
-        with patch("src.database.DB_PATH", test_db):
+        with patch("etl.database.DB_PATH", test_db):
             create_tables()
             update_meetfrank(jobs)
             update_meetfrank(jobs)
