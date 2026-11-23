@@ -19,23 +19,46 @@ const getAllSkills = () => {
 };
 
 const getSkillStatistics = (country) => {
+  const totalJobs = country
+    ? db
+        .prepare(
+          `
+          SELECT COUNT(DISTINCT job_id) AS total
+          FROM job_countries
+          WHERE LOWER(country) = LOWER(?)
+          `,
+        )
+        .get(country).total
+    : db
+        .prepare(
+          `
+          SELECT COUNT(*) AS total
+          FROM job
+          `,
+        )
+        .get().total;
+
   return db
     .prepare(
       `
-    SELECT
-      s.skill_id,
-      s.name,
-      COUNT(DISTINCT js.job_id) AS job_count
-    FROM skill s
-    LEFT JOIN job_skill js ON s.skill_id = js.skill_id
-    LEFT JOIN job_countries jc ON js.job_id = jc.job_id
-    WHERE (? IS NULL OR LOWER(jc.country) = LOWER(?))
-    GROUP BY s.skill_id, s.name
-    HAVING job_count > 0
-    ORDER BY job_count DESC, s.name
-  `,
+      SELECT
+        s.skill_id,
+        s.name,
+        COUNT(DISTINCT js.job_id) AS job_count,
+        ROUND(
+          COUNT(DISTINCT js.job_id) * 100.0 / NULLIF(?, 0),
+          1
+        ) AS percentage
+      FROM skill s
+      LEFT JOIN job_skill js ON s.skill_id = js.skill_id
+      LEFT JOIN job_countries jc ON js.job_id = jc.job_id
+      WHERE (? IS NULL OR LOWER(jc.country) = LOWER(?))
+      GROUP BY s.skill_id, s.name
+      HAVING job_count > 0
+      ORDER BY job_count DESC, s.name
+      `,
     )
-    .all(country || null, country || null);
+    .all(totalJobs, country || null, country || null);
 };
 
 const getSkillOccupations = (skillId) => {

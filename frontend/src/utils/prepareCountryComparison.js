@@ -1,4 +1,4 @@
-export const prepareCountryComparison = (data) => {
+export const prepareCountryComparison = (data, metric = "count") => {
   if (!data) return [];
 
   const skills = new Map();
@@ -8,23 +8,41 @@ export const prepareCountryComparison = (data) => {
       if (!skills.has(skill.skill_id)) {
         skills.set(skill.skill_id, {
           skill: skill.name,
+
           estonia: 0,
           latvia: 0,
           lithuania: 0,
+
+          estonia_percentage: 0,
+          latvia_percentage: 0,
+          lithuania_percentage: 0,
         });
       }
 
-      skills.get(skill.skill_id)[country] = skill.job_count;
+      const item = skills.get(skill.skill_id);
+
+      item[country] = skill.job_count;
+      item[`${country}_percentage`] = skill.percentage ?? 0;
     }
   }
 
   return [...skills.values()]
-    .sort(
-      (a, b) =>
+    .sort((a, b) => {
+      if (metric === "percentage") {
+        return (
+          b.estonia_percentage +
+          b.latvia_percentage +
+          b.lithuania_percentage -
+          (a.estonia_percentage + a.latvia_percentage + a.lithuania_percentage)
+        );
+      }
+
+      return (
         b.estonia +
         b.latvia +
         b.lithuania -
-        (a.estonia + a.latvia + a.lithuania),
-    )
+        (a.estonia + a.latvia + a.lithuania)
+      );
+    })
     .slice(0, 10);
 };

@@ -1,7 +1,7 @@
 export const CountryFilter = ({ country, onCountryChange }) => {
   return (
     <div className="country-filter">
-      <label htmlFor="country">Country</label>
+      {/* <label htmlFor="country">Country</label> */}
 
       <select
         id="country"

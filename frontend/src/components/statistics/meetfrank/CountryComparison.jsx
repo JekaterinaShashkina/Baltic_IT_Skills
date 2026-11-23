@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   BarChart,
   Bar,
@@ -8,22 +9,30 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { MetricToggle } from "../MetricToggle";
 
 import { useCountryComparison } from "../../../hooks/useCountryComparison";
 import { prepareCountryComparison } from "../../../utils/prepareCountryComparison";
 
 export const CountryComparison = () => {
   const { data, loading, error } = useCountryComparison();
+  const [metric, setMetric] = useState("count");
 
   if (loading) return <p>Loading comparison...</p>;
   if (error) return <p role="alert">Error: {error}</p>;
 
-  const chartData = prepareCountryComparison(data);
+  const chartData = prepareCountryComparison(data, metric);
+
+  const isPercentage = metric === "percentage";
 
   return (
     <section>
-      <h2>Country comparison</h2>
-      <p>Top 10 IT skills across Estonia, Latvia and Lithuania.</p>
+      <div className="chart-header">
+        <h2>Country comparison</h2>
+        <div className="chart-controls">
+          <MetricToggle value={metric} onChange={setMetric} />
+        </div>
+      </div>
 
       <div className="statistics-chart">
         <ResponsiveContainer width="100%" height={420}>
@@ -45,36 +54,40 @@ export const CountryComparison = () => {
             />
 
             <YAxis
-              domain={[0, 50]}
-              ticks={[0, 10, 20, 30, 40, 50]}
-              allowDecimals={false}
+              domain={isPercentage ? [0, 100] : ["auto", "auto"]}
+              allowDecimals={isPercentage}
+              tickFormatter={(value) => (isPercentage ? `${value}%` : value)}
               label={{
-                value: "Number of job postings",
+                value: isPercentage
+                  ? "Share of job postings"
+                  : "Number of job postings",
                 angle: -90,
                 position: "insideLeft",
                 style: { textAnchor: "middle", fontSize: 12 },
               }}
             />
 
-            <Tooltip />
+            <Tooltip
+              formatter={(value) => [isPercentage ? `${value}%` : value]}
+            />
             <Legend verticalAlign="top" height={36} />
 
             <Bar
-              dataKey="estonia"
+              dataKey={isPercentage ? "estonia_percentage" : "estonia"}
               name="Estonia"
               fill="#16A34A"
               radius={[4, 4, 0, 0]}
               maxBarSize={12}
             />
             <Bar
-              dataKey="latvia"
+              dataKey={isPercentage ? "latvia_percentage" : "latvia"}
               name="Latvia"
               fill="#3B82F6"
               radius={[4, 4, 0, 0]}
               maxBarSize={12}
             />
             <Bar
-              dataKey="lithuania"
+              dataKey={isPercentage ? "lithuania_percentage" : "lithuania"}
               name="Lithuania"
               fill="#b91c1c"
               radius={[4, 4, 0, 0]}

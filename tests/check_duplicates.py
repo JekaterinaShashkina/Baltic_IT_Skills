@@ -6,13 +6,13 @@ INPUT_FILE = "meetfrank_baltic_jobs.json"
 with open(INPUT_FILE, "r", encoding="utf-8") as file:
     jobs = json.load(file)
 
-# Для каждого ID сохраняем страны, в которых встретилась вакансия
+# Store the countries in which each vacancy ID appears
 jobs_by_id = defaultdict(list)
 
 for job in jobs:
     jobs_by_id[job["id"]].append(job)
 
-# Оставляем только ID, которые встретились больше одного раза
+# Keep only vacancy IDs that appear more than once
 duplicates = {
     job_id: items
     for job_id, items in jobs_by_id.items()

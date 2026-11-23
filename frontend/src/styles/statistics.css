@@ -1,4 +1,23 @@
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 80px;
+  margin-bottom: 12px;
+}
 
+.chart-header h2 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.chart-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
 /* Statistics charts */
 .statistics-chart {
   margin-top: 24px;
@@ -68,7 +87,7 @@
   min-width: 0;
   padding: 18px;
   background: var(--color-white);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-accent);
   border-radius: var(--radius-lg);
 }
 
@@ -95,6 +114,41 @@
   justify-self: stretch;
 }
 
+/* Metric Toggle */
+.metric-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  background: var(--color-accent-hover);
+  border: 1px solid var(--color-accent);
+  border-radius: 10px;
+  gap: 2px;
+}
+
+.metric-toggle button {
+  border: none;
+  background: transparent;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.metric-toggle button:hover {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.metric-toggle button.active {
+  background: #ffffff;
+  color: #0f2f55;
+  box-shadow: 0 1px 4px rgba(15, 47, 85, 0.12);
+}
 
 @media (max-width: 1100px) {
   .statistics-dashboard {

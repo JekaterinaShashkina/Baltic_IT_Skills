@@ -8,7 +8,7 @@ FILE = BASE_DIR / "data" / "processed" / "meetfrank_baltic_jobs.json"
 with open(FILE, encoding="utf-8") as f:
     data = json.load(f)
 
-# Если файл содержит объект с ключом jobs
+# If the file contains an object with a "jobs" key
 jobs = data["jobs"] if isinstance(data, dict) else data
 
 grouped = defaultdict(list)
@@ -22,8 +22,8 @@ multicountry = {
     if len(set(job["country"] for job in records)) > 1
 }
 
-print(f"Всего записей: {len(jobs)}")
-print(f"Вакансий в нескольких странах: {len(multicountry)}")
+print(f"Total records: {len(jobs)}")
+print(f"Vacancies appearing in multiple countries: {len(multicountry)}")
 
 fields = [
     "title",
@@ -71,7 +71,7 @@ for job_id, records in multicountry.items():
 print("\n=== SUMMARY ===")
 
 if not differences:
-    print("Все проверенные поля совпадают.")
+    print("All checked fields are identical.")
 else:
     for field, ids in sorted(differences.items()):
-        print(f"{field}: {len(ids)} вакансий с различиями")
+        print(f"{field}: {len(ids)} vacancies with differences")

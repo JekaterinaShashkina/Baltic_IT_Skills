@@ -12,7 +12,12 @@ export const EscoDashboard = () => {
 
   return (
     <div className="esco-dashboard">
-      <EscoCoverage coverage={analysis.coverage} />
+      <EscoCoverage
+        coverage={analysis.coverage}
+        occupation_summary={analysis.occupationSummary}
+        exact_examples={analysis.exactExamples}
+        no_match_examples={analysis.noMatchExamples}
+      />
       <div className="esco-dashboard__charts">
         <EscoCountryComparison countries={analysis.countryCoverage} />
         <EscoRelationsChart relations={analysis.relations} />

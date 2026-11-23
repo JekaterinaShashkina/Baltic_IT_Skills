@@ -82,12 +82,92 @@ const getCountryCoverage = () => {
     )
     .all();
 };
+const getExactMatchExamples = () => {
+  return db
+    .prepare(
+      `
+      SELECT
+        s.skill_id,
+        s.name,
+        es.title AS esco_name,
+        COUNT(DISTINCT js.job_id) AS job_count
+      FROM skill s
+      JOIN job_skill js
+        ON js.skill_id = s.skill_id
+      JOIN esco_check ec
+        ON ec.skill_id = s.skill_id
+      JOIN skill_mapping sm
+        ON sm.skill_id = s.skill_id
+      JOIN esco_skill es
+        ON es.esco_uri = sm.esco_uri
+      WHERE ec.status = 'exact'
+      GROUP BY
+        s.skill_id,
+        s.name,
+        es.title
+      ORDER BY job_count DESC, s.name
+      LIMIT 5
+      `,
+    )
+    .all();
+};
+
+const getNoMatchExamples = () => {
+  return db
+    .prepare(
+      `
+      SELECT
+        s.skill_id,
+        s.name,
+        COUNT(DISTINCT js.job_id) AS job_count
+      FROM skill s
+      JOIN job_skill js
+        ON js.skill_id = s.skill_id
+      JOIN esco_check ec
+        ON ec.skill_id = s.skill_id
+      WHERE ec.status = 'no_match'
+      GROUP BY
+        s.skill_id,
+        s.name
+      ORDER BY job_count DESC, s.name
+      LIMIT 5
+      `,
+    )
+    .all();
+};
+
+const getOccupationSummary = () => {
+  return db
+    .prepare(
+      `
+      SELECT
+        COUNT(DISTINCT eso.occupation_uri) AS unique_occupations,
+        COUNT(DISTINCT sm.esco_uri || '|' || eso.occupation_uri) AS total_relations
+      FROM skill_mapping sm
+      JOIN esco_skill_occupation eso
+        ON eso.esco_uri = sm.esco_uri
+      JOIN occupation o
+        ON o.occupation_uri = eso.occupation_uri
+      WHERE sm.status = 'exact'
+        AND o.ict_category = 'ICT'
+        AND EXISTS (
+          SELECT 1
+          FROM job_skill js
+          WHERE js.skill_id = sm.skill_id
+        )
+      `,
+    )
+    .get();
+};
 
 const getAnalysis = () => {
   return {
     coverage: getMappingCoverage(),
     relations: getOccupationRelations(),
     countryCoverage: getCountryCoverage(),
+    exactExamples: getExactMatchExamples(),
+    noMatchExamples: getNoMatchExamples(),
+    occupationSummary: getOccupationSummary(),
   };
 };
 
